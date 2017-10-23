@@ -1,0 +1,33 @@
+{
+  "name": "straight-trippin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "boom": "^6.0.0",
+    "express": "^4.16.2",
+    "knex": "^0.13.0",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.1",
+    "path": "^0.12.7",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "knex": "knex",
+    "nodemon": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianpja/straight-trippin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianpja/straight-trippin/issues"
+  },
+  "homepage": "https://github.com/brianpja/straight-trippin#readme"
+}
