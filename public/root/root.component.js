@@ -18,6 +18,14 @@
 
     }
 
-
+    vm.logout = function() {
+      console.log('logging out')
+      return dataService.logout()
+        .then(function(response) {
+          console.log(response)
+          vm.userData = {loggedIn: false}
+          console.log(vm.userData);
+        })
+    }
   }
 }());

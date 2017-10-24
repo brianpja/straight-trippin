@@ -1,10 +1,10 @@
 <div class="tc ma4 ">
 
   <div class="f3">Login</div>
-  <form>
-    <input placeholder="email"></input>
-    <input placeholder="password"></input>
-    <button>Go</button>
+  <form ng-submit="$ctrl.login($ctrl.userLogin)">
+    <input placeholder="email" ng-model="$ctrl.userLogin.email"></input>
+    <input placeholder="password" ng-model="$ctrl.userLogin.password"></input>
+    <button type="submit">Go</button>
   </form>
 
   <div class="ma4">or</div>
@@ -15,7 +15,7 @@
     <input placeholder="Email" ng-model="$ctrl.newUser.email"></input>
     <input placeholder="New password" ng-model="$ctrl.newUser.password"></input>
 
-    <div class="ma2">Birthday: 
+    <div class="ma2">Birthday:
       <select ng-model="$ctrl.newUser.month">
         <option value="Month" disabled>Month</option>
         <option ng-repeat="number in $ctrl.months" required>{{number}}</option>

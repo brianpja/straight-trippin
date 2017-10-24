@@ -58,6 +58,16 @@
         })
     }
 
+    vm.login = function(user) {
+      console.log(user);
+      return dataService.login(user)
+        .then(function(response) {
+          vm.userData = response.data;
+          vm.userData.loggedIn = true;
+          console.log('userData: ', vm.userData);
+        })
+    }
+
 
   }
 }());

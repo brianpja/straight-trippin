@@ -4,7 +4,8 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
 const bcrypt = require('bcrypt-as-promised');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const boom = require('boom');
 
 router.get('/users', (req, res, next) => {
   knex('users')
