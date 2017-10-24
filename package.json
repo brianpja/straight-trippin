@@ -18,7 +18,12 @@
     "pg": "^7.3.0",
     "ui-router": "^1.0.0-alpha.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^4.0.0",
+    "lite-server": "^2.3.0",
+    "reload": "^2.2.2",
+    "tachyons": "^4.8.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",

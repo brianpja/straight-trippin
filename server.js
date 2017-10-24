@@ -4,9 +4,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config();
-// }
+const reload = require('reload')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const users = require('./routes/users.js');
 

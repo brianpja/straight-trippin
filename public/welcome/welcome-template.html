@@ -1,0 +1,36 @@
+<div class="tc ma4 ">
+
+  <div class="f3">Login</div>
+  <form>
+    <input placeholder="email"></input>
+    <input placeholder="password"></input>
+    <button>Go</button>
+  </form>
+
+  <div class="ma4">or</div>
+  <div class="f3">Create a new account</div>
+  <form ng-submit="$ctrl.addUser($ctrl.newUser)">
+    <input placeholder="First name" ng-model="$ctrl.newUser.first_name"></input>
+    <input placeholder="Last name" ng-model="$ctrl.newUser.last_name"></input>
+    <input placeholder="Email" ng-model="$ctrl.newUser.email"></input>
+    <input placeholder="New password" ng-model="$ctrl.newUser.password"></input>
+
+    <div class="ma2">Birthday: 
+      <select ng-model="$ctrl.newUser.month">
+        <option value="Month" disabled>Month</option>
+        <option ng-repeat="number in $ctrl.months" required>{{number}}</option>
+      </select>
+      <select ng-model="$ctrl.newUser.day">
+        <option value="Day" disabled>Day</option>
+        <option ng-repeat="number in $ctrl.days" required>{{number}}</option>
+      </select>
+      <select ng-model="$ctrl.newUser.year">
+        <option value="Year" disabled>Year</option>
+        <option ng-repeat="number in $ctrl.years" required>{{number}}</option>
+      </select>
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+</div>
