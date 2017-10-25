@@ -5,7 +5,7 @@
   angular.module('app')
     .component('edit', {
       controller,
-      templateUrl: 'edit/edit-template.html'
+      templateUrl: 'edit/edit-template.html',
       bindings: {
         userData: '='
       }

@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "angular": "^1.6.6",
+    "angular-ui-router": "^0.4.3",
     "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.18.2",
     "boom": "^6.0.0",
@@ -15,8 +16,7 @@
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1",
     "path": "^0.12.7",
-    "pg": "^7.3.0",
-    "ui-router": "^1.0.0-alpha.3"
+    "pg": "^7.3.0"
   },
   "devDependencies": {
     "dotenv": "^4.0.0",

@@ -5,7 +5,7 @@
   angular.module('app')
     .component('home', {
       controller,
-      templateUrl: 'home/home-template.html'
+      templateUrl: 'home/home-template.html',
       bindings: {
         userData: '='
       }
@@ -17,7 +17,7 @@
 
 
     vm.$onInit = function() {
-
+      console.log('something new')
     }
 
 

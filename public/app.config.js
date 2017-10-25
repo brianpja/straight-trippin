@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-
+  console.log('config')
   angular.module('app').config(config)
 
   config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
@@ -12,7 +12,25 @@
       .state({
         name: 'root',
         component: 'root',
-        url: '/'
+        abstract: true
+      })
+      .state({
+        name: 'home',
+        url: '/',
+        component: 'home',
+        parent: 'root'
+      })
+      .state({
+        name: 'welcome',
+        url: '/welcome',
+        component: 'welcome',
+        parent: 'root'
+      })
+      .state({
+        name: 'edit',
+        url: '/edit',
+        component: 'edit',
+        parent: 'root'
       })
 
   }

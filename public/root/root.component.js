@@ -15,7 +15,7 @@
     vm.userData = {};
 
     vm.$onInit = function() {
-
+      console.log('on init root')
     }
 
     vm.logout = function() {

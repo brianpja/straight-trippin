@@ -23,7 +23,6 @@
 
     vm.$onInit = function() {
       vm.newUser = {year: 'Year', month: 'Month', day: 'Day'}
-      // vm.newUser = vm.default;
       vm.createDays();
       vm.createMonths();
       vm.createYears();
