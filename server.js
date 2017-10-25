@@ -4,8 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const reload = require('reload')
 if (process.env.NODE_ENV !== 'production') {
+  const reload = require('reload')
   require('dotenv').config();
 }
 
