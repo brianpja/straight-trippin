@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "v8.2.1"
+  },
   "dependencies": {
     "angular": "^1.6.6",
     "angular-ui-router": "^0.4.3",
@@ -28,6 +31,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "knex": "knex",
+    "heroku-postbuild": "knex migrate:latest",
     "nodemon": "nodemon server.js"
   },
   "repository": {
