@@ -54,6 +54,7 @@
           vm.userData = response.data;
           vm.userData.loggedIn = true;
           console.log('userData: ', vm.userData);
+          $state.go('edit');
         })
     }
 
@@ -64,6 +65,7 @@
           vm.userData = response.data;
           vm.userData.loggedIn = true;
           console.log('userData: ', vm.userData);
+          $state.go('home');
         })
     }
 
