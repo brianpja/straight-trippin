@@ -8,7 +8,8 @@ exports.up = function(knex, Promise) {
     table.date('birthdate').notNullable();
     table.string('location').defaultTo('');
     table.string('status');
-    table.string('img');
+    table.string('large_img').defaultTo('http://lorempixel.com/300/300');
+    table.string('small_img').defaultTo('http://lorempixel.com/40/40');
     table.string('hashed_password').notNullable();
   })
 };

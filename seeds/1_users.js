@@ -12,7 +12,6 @@ exports.seed = function(knex, Promise) {
         birthdate: '1986-07-30',
         status: 'chillin',
         location: 'Seattle, WA, USA',
-        img: 'http://lorempixel.com/400/400',
         hashed_password: 'password'}
       ]);
     })

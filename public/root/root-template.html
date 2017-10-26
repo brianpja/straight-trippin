@@ -1,4 +1,4 @@
-<div class="header bg-dark-gray lightest-blue f1 i">Straight Trippin</div>
+<div class="header bg-dark-gray lightest-blue f1 i">Straight Trippin'</div>
 <div>Toolbar:
   <a ng-click="$ctrl.logout()" ng-if="$ctrl.userData.loggedIn">Logout</a>
   <a ui-sref="home" ng-if="$ctrl.userData.loggedIn">home</a>
@@ -6,4 +6,4 @@
   <a ui-sref="welcome" ng-if="!$ctrl.userData.loggedIn">welcome</a>
 </div>
 
-<ui-view user-data="$ctrl.userData"></ui-view>
+<ui-view></ui-view>

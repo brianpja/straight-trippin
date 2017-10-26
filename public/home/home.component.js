@@ -5,46 +5,47 @@
     .component('home', {
       controller,
       templateUrl: 'home/home-template.html',
-      bindings: {
-        userData: '='
-      }
+
     })
 
   controller.$inject = ['$state', '$http', 'dataService', 'loginService']
   function controller($state, $http, dataService, loginService) {
     const vm = this;
-
+    vm.user = {};
+    vm.feed = [];
 
     vm.$onInit = function() {
       loginService.isLoggedIn()
         .then(function(response) {
           if (!response) {
             $state.go('welcome')
-          } 
+          }
+        })
+
+        vm.userData = loginService.user.data;
+        console.log('from home', vm.userData)
+        vm.getUser(vm.userData);
+        vm.getFeed()
+          .then(function() {
+            console.log('feed: ', vm.feed)
+
+          })
+    }
+
+    vm.getUser = function(user) {
+      return dataService.getUser(user)
+        .then(function(response) {
+          console.log('response:', response)
+          vm.user = response.data;
+          console.log('user: ', vm.user)
         })
     }
 
-    // vm.getUserData = function(user) {
-    //   return dataService.getUser(user)
-    //     .then(function(response) {
-    //       console.log('response:', response)
-    //       vm.userData = response.data;
-    //       vm.userData.loggedIn = true;
-    //       console.log('userData: ', vm.userData)
-    //     })
-    // }
-
-    // vm.isLoggedIn = function() {
-    //   return loginService.isLoggedIn()
-    //     .then(function(response) {
-    //       return response.data;
-    //     })
-    // }
 
     vm.getFeed = function() {
       return dataService.getFeed()
         .then(function(response) {
-          console.log(response);
+          vm.feed = response.data;
         })
     }
   }

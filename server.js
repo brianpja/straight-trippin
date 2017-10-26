@@ -11,6 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const users = require('./routes/users.js');
 const token = require('./routes/token.js');
+const posts = require('./routes/posts.js');
 
 
 app.use(bodyParser.json());
@@ -21,6 +22,7 @@ app.use(express.static(path.join('node_modules')));
 
 app.use(users);
 app.use(token);
+app.use(posts);
 
 app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')})

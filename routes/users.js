@@ -22,6 +22,7 @@ router.get('/users/:id', (req, res, next) => {
     .where('users.id', req.params.id)
     .first()
     .then(function(user) {
+      delete user.hashed_password;
       res.send(user)
     })
     .catch((err) => {
