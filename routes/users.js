@@ -17,16 +17,24 @@ router.get('/users', (req, res, next) => {
     })
 })
 
+router.get('/users/:id', (req, res, next) => {
+  knex('users')
+    .where('users.id', req.params.id)
+    .then(function(user) {
+      res.send(user)
+    })
+    .catch((err) => {
+      next(err);
+    })
+})
+
 router.post('/users', (req, res, next) => {
-  console.log('posting');
-  console.log(req.body);
 
   const userData = req.body;
   createBirthdate(userData);
 
   bcrypt.hash(userData.password, 12)
     .then(function(hashed_password) {
-      console.log(hashed_password);
       delete userData.password;
       userData.hashed_password = hashed_password;
 
@@ -49,10 +57,7 @@ router.post('/users', (req, res, next) => {
           delete result.hashed_password;
           res.send(result)
         })
-
     })
-
-
 })
 
 function createBirthdate(obj) {

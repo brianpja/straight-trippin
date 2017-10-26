@@ -22,9 +22,11 @@ app.use(express.static(path.join('node_modules')));
 app.use(users);
 app.use(token);
 
-
+app.use('*', function(req, res, next) {
+  res.sendFile('index.html', {root: path.join(__dirname, 'public')})
+})
 app.use((req, res) => {
-  res.send('brian you messing up!')
+  res.send('error')
 })
 
 

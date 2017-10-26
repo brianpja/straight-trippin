@@ -7,7 +7,15 @@ const bcrypt = require('bcrypt-as-promised');
 const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
-
+router.get('/token', (req, res) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    console.log(payload)
+    if (err) {
+      return res.send(false);
+    }
+    res.send({loggedIn: true, id: payload.userId});
+  });
+});
 
 router.post(`/token`, (req, res, next) => {
   console.log(req.body);

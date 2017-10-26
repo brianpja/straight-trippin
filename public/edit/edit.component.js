@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-  console.log('edit')
 
   angular.module('app')
     .component('edit', {

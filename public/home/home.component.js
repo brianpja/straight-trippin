@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-  console.log('home')
 
   angular.module('app')
     .component('home', {
@@ -17,9 +16,37 @@
 
 
     vm.$onInit = function() {
-      console.log('something new')
+      vm.isLoggedIn()
+        .then(function(response) {
+          if (!response) {
+            $state.go('welcome')
+          } else {
+            vm.getUserData(response);
+          }
+        })
     }
 
+    vm.getUserData = function(user) {
+      return dataService.getUser(user)
+        .then(function(response) {
+          vm.userData = response.data;
+          vm.userData.loggedIn = true;
+          console.log('userData: ', vm.userData)
+        })
+    }
 
+    vm.isLoggedIn = function() {
+      return dataService.isLoggedIn()
+        .then(function(response) {
+          return response.data;
+        })
+    }
+
+    vm.getFeed = function() {
+      return dataService.getFeed()
+        .then(function(response) {
+          console.log(response);
+        })
+    }
   }
 }());

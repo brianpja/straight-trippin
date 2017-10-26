@@ -1,9 +1,9 @@
 <div class="header bg-dark-gray lightest-blue f1 i">Straight Trippin</div>
 <div>Toolbar:
-  <a ng-click="$ctrl.logout()">Logout</a>
-  <a ui-sref="home">home</a>
-  <a ui-sref="edit">edit</a>
-  <a ui-sref="welcome">welcome</a>
+  <a ng-click="$ctrl.logout()" ng-if="$ctrl.userData.loggedIn">Logout</a>
+  <a ui-sref="home" ng-if="$ctrl.userData.loggedIn">home</a>
+  <a ui-sref="edit" ng-if="$ctrl.userData.loggedIn">edit</a>
+  <a ui-sref="welcome" ng-if="!$ctrl.userData.loggedIn">welcome</a>
 </div>
 
 <ui-view user-data="$ctrl.userData"></ui-view>

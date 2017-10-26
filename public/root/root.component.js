@@ -1,21 +1,20 @@
 (function() {
   'use strict';
-  console.log('root')
 
   angular.module('app')
     .component('root', {
       controller,
-      templateUrl: 'root/root-template.html'
+      templateUrl: '/root/root-template.html'
 
     })
 
   controller.$inject = ['$state', '$http', 'dataService']
   function controller($state, $http, dataService) {
     const vm = this;
-    vm.userData = {};
 
     vm.$onInit = function() {
-      console.log('on init root')
+      vm.userData = {loggedIn: false};
+
     }
 
     vm.logout = function() {
@@ -25,7 +24,12 @@
           console.log(response)
           vm.userData = {loggedIn: false}
           console.log(vm.userData);
+          $state.go('welcome')
         })
     }
+
+
+
+
   }
 }());

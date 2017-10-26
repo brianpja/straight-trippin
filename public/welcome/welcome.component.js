@@ -1,11 +1,10 @@
 (function() {
   'use strict';
-  console.log('welcome')
 
   angular.module('app')
     .component('welcome', {
       controller,
-      templateUrl: 'welcome/welcome-template.html',
+      templateUrl: '/welcome/welcome-template.html',
       bindings: {
         userData: '='
       }
