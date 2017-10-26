@@ -8,22 +8,27 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService']
-  function controller($state, $http, dataService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
+  function controller($state, $http, dataService, loginService) {
     const vm = this;
 
     vm.$onInit = function() {
-      vm.userData = {loggedIn: false};
+      vm.userData = loginService.user;
+
+      loginService.isLoggedIn()
+        .then(function(response) {
+          if (!response) {
+            $state.go('welcome')
+          }
+        })
 
     }
 
     vm.logout = function() {
       console.log('logging out')
-      return dataService.logout()
+      return loginService.logout()
         .then(function(response) {
-          console.log(response)
-          vm.userData = {loggedIn: false}
-          console.log(vm.userData);
+          console.log('userData: ', vm.userData);
           $state.go('welcome')
         })
     }

@@ -5,18 +5,17 @@
     .component('edit', {
       controller,
       templateUrl: 'edit/edit-template.html',
-      bindings: {
-        userData: '='
-      }
+
     })
 
-  controller.$inject = ['$state', '$http', 'dataService']
-  function controller($state, $http, dataService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
+  function controller($state, $http, dataService, loginService) {
     const vm = this;
 
 
     vm.$onInit = function() {
-
+      vm.userData = loginService.user;
+      console.log('userData from edit: ', vm.userData)
     }
 
 

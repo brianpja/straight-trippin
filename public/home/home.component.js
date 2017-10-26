@@ -10,37 +10,36 @@
       }
     })
 
-  controller.$inject = ['$state', '$http', 'dataService']
-  function controller($state, $http, dataService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
+  function controller($state, $http, dataService, loginService) {
     const vm = this;
 
 
     vm.$onInit = function() {
-      vm.isLoggedIn()
+      loginService.isLoggedIn()
         .then(function(response) {
           if (!response) {
             $state.go('welcome')
-          } else {
-            vm.getUserData(response);
-          }
+          } 
         })
     }
 
-    vm.getUserData = function(user) {
-      return dataService.getUser(user)
-        .then(function(response) {
-          vm.userData = response.data;
-          vm.userData.loggedIn = true;
-          console.log('userData: ', vm.userData)
-        })
-    }
+    // vm.getUserData = function(user) {
+    //   return dataService.getUser(user)
+    //     .then(function(response) {
+    //       console.log('response:', response)
+    //       vm.userData = response.data;
+    //       vm.userData.loggedIn = true;
+    //       console.log('userData: ', vm.userData)
+    //     })
+    // }
 
-    vm.isLoggedIn = function() {
-      return dataService.isLoggedIn()
-        .then(function(response) {
-          return response.data;
-        })
-    }
+    // vm.isLoggedIn = function() {
+    //   return loginService.isLoggedIn()
+    //     .then(function(response) {
+    //       return response.data;
+    //     })
+    // }
 
     vm.getFeed = function() {
       return dataService.getFeed()

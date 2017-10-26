@@ -11,8 +11,8 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService']
-  function controller($state, $http, dataService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
+  function controller($state, $http, dataService, loginService) {
     const vm = this;
 
     vm.days = [];
@@ -21,6 +21,7 @@
 
 
     vm.$onInit = function() {
+      vm.userData = loginService.user;
       vm.newUser = {year: 'Year', month: 'Month', day: 'Day'}
       vm.createDays();
       vm.createMonths();
@@ -49,22 +50,28 @@
       console.log('adding')
       return dataService.addUser(user)
         .then(function(response) {
-          console.log(response);
-          vm.userData = response.data;
-          vm.userData.loggedIn = true;
-          console.log('userData: ', vm.userData);
-          $state.go('edit');
+          console.log('response: ', response);
+          return loginService.isLoggedIn()
+        })
+        .then(function(response){
+          if(response){
+            $state.go('edit');
+
+          }
         })
     }
 
     vm.login = function(user) {
       console.log(user);
-      return dataService.login(user)
+      return loginService.login(user)
         .then(function(response) {
-          vm.userData = response.data;
-          vm.userData.loggedIn = true;
           console.log('userData: ', vm.userData);
+
+          // TODO: WHat happens if log fails
           $state.go('home');
+        })
+        .catch(function(err){
+          //login unsuccessful
         })
     }
 

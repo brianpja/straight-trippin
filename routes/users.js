@@ -20,6 +20,7 @@ router.get('/users', (req, res, next) => {
 router.get('/users/:id', (req, res, next) => {
   knex('users')
     .where('users.id', req.params.id)
+    .first()
     .then(function(user) {
       res.send(user)
     })
