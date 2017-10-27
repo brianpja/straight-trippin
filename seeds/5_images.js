@@ -7,10 +7,10 @@ exports.seed = function(knex, Promise) {
       return knex('images').insert([
         {id: 1,
           post_id: 1,
-          url: 'http://lorempixel.com/400/400'},
+          url: 'http://lorempixel.com/550/400'},
         {id: 2,
           post_id: 2,
-          url: 'http://lorempixel.com/400/400'}
+          url: 'http://lorempixel.com/550/400'}
       ]);
     })
     .then(() => {

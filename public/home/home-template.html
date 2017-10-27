@@ -3,40 +3,49 @@
 <div>Hello, {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}!</div>
 
 <div class="container">
-<div class="f3">Feed</div>
+  <div class="f3 ml4">Feed</div>
+  <button class="ml4">Add new post</button>
 
-<div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed">
-  <div class="pa2 ph3-ns pb3-ns">
-    <div class="dt w-100 mt1">
-      <div class="post-head">
-        <div class="f5 mv0 mid-gray dib">
-          <div class="small-img dib">
-            <img class="br2" src="{{post.small_img}}">
-          </div>
-          <!-- <img class="br2" src="http://lorempixel.com/40/40"> -->
-          <div class="dib">
+  <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed">
+    <div class="pa2 ph3-ns pb3-ns">
+      <div class="dt w-100 mt1">
+        <div class="post-head">
+          <div class="f5 mv0 mid-gray dib">
+            <div class="small-img dib">
+              <img class="br2" src="{{post.small_img}}">
+            </div>
+            <!-- <img class="br2" src="http://lorempixel.com/40/40"> -->
+            <div class="dib">
             {{post.first_name}} {{post.last_name}}
 
-            <div class="f6">posted <span am-time-ago="post.created_at"></span></div>
-          </div>
+              <div class="f6">posted <span am-time-ago="post.created_at"></span></div>
+            </div>
 
+          </div>
+          <div class="b tr dib post-style">
+            <span ng-pluralize count="post.styles.length"
+            when="{'0': '',
+                    '1': '{{post.styles[0].name}}',
+                    '2': '{{post.styles[0].name}}, {{post.styles[1].name}}',
+                    '3': '{{post.styles[0].name}}, {{post.styles[1].name}}, {{post.styles[2].name}}'}"></span>
+          </div>
         </div>
-        <div class="tr dib post-style">
-          <span ng-pluralize count="post.styles.length"
-          when="{'0': '',
-                  '1': '{{post.styles[0].name}}',
-                  '2': '{{post.styles[0].name}}, {{post.styles[1].name}}',
-                  '3': '{{post.styles[0].name}}, {{post.styles[1].name}}, {{post.styles[2].name}}'}"></span>
+
+        <div class="mt3">
+          <h1 class="f4 mv0">{{post.post_location}}</h1>
         </div>
       </div>
-
-      <div class="mt3">
-        <h1 class="f4 mv0">{{post.post_location}}</h1>
+      <p class="f6 lh-copy measure mt2">
+        {{post.content}}
+      </p>
+      <div>
+        <img class="br2 center" src="http://lorempixel.com/550/400">
+      </div>
+      <div class="f6 mt3">
+        <a ng-pluralize count="post.comments.length"
+          when="{'1': '{{post.comments.length}} comment',
+                  'other': '{{post.comments.length}} comments'}"></a>
       </div>
     </div>
-    <p class="f6 lh-copy measure mt2">
-      {{post.content}}
-    </p>
   </div>
-</div>
 </div>

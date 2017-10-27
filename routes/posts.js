@@ -37,7 +37,13 @@ router.get('/posts', (req, res, next) => {
           FROM comments
           INNER JOIN users ON users.id = comments.user_id
           WHERE posts.id = comments.post_id
-        ) comments) as comments
+        ) comments) as comments,
+      (SELECT json_agg(images)
+        FROM (
+          SELECT url
+          FROM images
+          WHERE posts.id = images.post_id
+        )images) as images
     FROM posts
     INNER JOIN users ON posts.user_id = users.id`)
       .then(function(posts) {
