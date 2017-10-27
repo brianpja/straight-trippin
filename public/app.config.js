@@ -31,6 +31,18 @@
         component: 'edit',
         parent: 'root'
       })
+      .state({
+        name: 'profile',
+        url: '/profile/',
+        component: 'profile',
+        parent: 'root'
+      })
+      .state({
+        name: 'write',
+        url: '/write/',
+        component: 'write',
+        parent: 'root'
+      })
 
   }
 }());

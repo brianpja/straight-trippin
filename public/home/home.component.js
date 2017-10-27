@@ -72,11 +72,12 @@
           retObj.last_name = vm.user.last_name;
           retObj.small_img = vm.user.small_img;
           post.comments.push(retObj);
+          post.showComments = true;
           delete post.commentInput;
         })
     }
 
 
-    
+
   }
 }());

@@ -4,6 +4,7 @@
   <a ui-sref="home" ng-if="$ctrl.userData.loggedIn">home</a>
   <a ui-sref="edit" ng-if="$ctrl.userData.loggedIn">edit</a>
   <a ui-sref="welcome" ng-if="!$ctrl.userData.loggedIn">welcome</a>
+  <a ui-sref="profile" ng-if="$ctrl.userData.loggedIn">profile</a>
 </div>
 
 <ui-view></ui-view>

@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="f3 ml4">Feed</div>
-  <button class="ml4">Add new post</button>
+  <button class="ml4" ui-sref="write">Add new post</button>
 
   <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed">
     <div class="pa2 ph3-ns pb3-ns">
@@ -38,7 +38,7 @@
       <p class="f6 lh-copy measure mt2">
         {{post.content}}
       </p>
-      <div ng-if="post.images">
+      <div ng-if="post.images.length">
         <img class="br2 center" src="{{post.images[0].url}}">
       </div>
       <div class="f6 mv3">
@@ -50,7 +50,7 @@
         <div><a class="b">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}</div>
       </div>
       <form ng-submit="$ctrl.postComment(post)">
-        <input class="br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>
+        <input class="f6 br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>
       </form>
     </div>
   </div>

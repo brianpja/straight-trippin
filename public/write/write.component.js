@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('app')
-    .component('profile', {
+    .component('write', {
       controller,
-      templateUrl: '/profile/profile-template.html'
+      templateUrl: '/write/write-template.html'
 
     })
 

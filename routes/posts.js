@@ -51,6 +51,15 @@ router.get('/posts', (req, res, next) => {
       .then(function(posts) {
         posts = posts.rows.map(function(post) {
           post.showComments = false;
+          if (!post.comments) {
+            post.comments = [];
+          }
+          if (!post.images) {
+            post.images = [];
+          }
+          if (!post.styles) {
+            post.styles = [];
+          }
           return post
         })
         res.send(posts)
