@@ -41,11 +41,17 @@
       <div ng-if="post.images">
         <img class="br2 center" src="{{post.images[0].url}}">
       </div>
-      <div class="f6 mt3">
-        <a ng-pluralize count="post.comments.length"
+      <div class="f6 mv3">
+        <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
           when="{'1': '{{post.comments.length}} comment',
                   'other': '{{post.comments.length}} comments'}"></a>
       </div>
+      <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
+        <div><a class="b">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}</div>
+      </div>
+      <form ng-submit="$ctrl.postComment(post)">
+        <input class="br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>
+      </form>
     </div>
   </div>
 </div>

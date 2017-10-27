@@ -35,7 +35,7 @@
     vm.getUser = function(user) {
       return dataService.getUser(user)
         .then(function(response) {
-          console.log('response:', response)
+
           vm.user = response.data;
           console.log('user: ', vm.user)
         })
@@ -45,8 +45,38 @@
     vm.getFeed = function() {
       return dataService.getFeed()
         .then(function(response) {
+          console.log('response:', response)
           vm.feed = response.data;
         })
     }
+
+    vm.toggleComments = function(post) {
+      post.showComments = !post.showComments;
+    }
+
+    vm.postComment = function(post) {
+      console.log('posting', post)
+
+      const commentObj = {
+        user_id: vm.user.id,
+        post_id: post.post_id,
+        content: post.commentInput
+      }
+
+      return dataService.addComment(commentObj)
+        .then(function(response) {
+          console.log('response', response);
+          console.log('current user', vm.user)
+          const retObj = response.data;
+          retObj.first_name = vm.user.first_name;
+          retObj.last_name = vm.user.last_name;
+          retObj.small_img = vm.user.small_img;
+          post.comments.push(retObj);
+          delete post.commentInput;
+        })
+    }
+
+
+    
   }
 }());

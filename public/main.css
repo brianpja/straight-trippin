@@ -25,3 +25,12 @@
 .post-style {
   align-self: flex-end;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

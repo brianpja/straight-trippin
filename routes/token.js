@@ -9,7 +9,6 @@ const boom = require('boom');
 
 router.get('/token', (req, res) => {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
-    console.log(payload)
     if (err) {
       return res.send(false);
     }
@@ -18,7 +17,6 @@ router.get('/token', (req, res) => {
 });
 
 router.post(`/token`, (req, res, next) => {
-  console.log(req.body);
   let user;
   const login = req.body;
 

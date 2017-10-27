@@ -31,6 +31,7 @@ router.get('/posts', (req, res, next) => {
         FROM (
           SELECT content,
           created_at,
+          updated_at,
           first_name,
           last_name,
           small_img
@@ -46,8 +47,13 @@ router.get('/posts', (req, res, next) => {
         )images) as images
     FROM posts
     INNER JOIN users ON posts.user_id = users.id`)
+
       .then(function(posts) {
-        res.send(posts.rows)
+        posts = posts.rows.map(function(post) {
+          post.showComments = false;
+          return post
+        })
+        res.send(posts)
       })
 
       .catch((err) => {

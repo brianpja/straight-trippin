@@ -28,6 +28,12 @@
           })
       }
 
+      this.addComment = function(obj) {
+        return $http.post(`/comments`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
 
 
     }
