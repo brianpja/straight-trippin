@@ -7,6 +7,21 @@
 }
 
 .container {
-  width: 80%;
+  width: 600px;
   margin: auto;
+}
+
+.small-img {
+  width: 45px;
+  display: inline-block;
+}
+
+.post-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.post-style {
+  align-self: flex-end;
 }
