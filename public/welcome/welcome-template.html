@@ -3,7 +3,7 @@
   <div class="f3">Login</div>
   <form ng-submit="$ctrl.login($ctrl.userLogin)">
     <input placeholder="email" ng-model="$ctrl.userLogin.email"></input>
-    <input placeholder="password" ng-model="$ctrl.userLogin.password"></input>
+    <input type="password" placeholder="password" ng-model="$ctrl.userLogin.password"></input>
     <button type="submit">Go</button>
   </form>
 
@@ -13,7 +13,7 @@
     <input placeholder="First name" ng-model="$ctrl.newUser.first_name"></input>
     <input placeholder="Last name" ng-model="$ctrl.newUser.last_name"></input>
     <input placeholder="Email" ng-model="$ctrl.newUser.email"></input>
-    <input placeholder="New password" ng-model="$ctrl.newUser.password"></input>
+    <input type="password" placeholder="New password" ng-model="$ctrl.newUser.password"></input>
 
     <div class="ma2">Birthday:
       <select ng-model="$ctrl.newUser.month">

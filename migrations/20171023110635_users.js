@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('last_name').notNullable().defaultTo('');
     table.date('birthdate').notNullable();
     table.string('location').defaultTo('');
-    table.string('status');
+    table.string('status').defaultTo('blank');
     table.string('large_img').defaultTo('http://lorempixel.com/300/300');
     table.string('small_img').defaultTo('http://lorempixel.com/40/40');
     table.string('hashed_password').notNullable();

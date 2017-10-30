@@ -22,7 +22,7 @@
           }
         })
 
-        vm.userData = loginService.user.data;
+        vm.userData = loginService.user;
         console.log('from home', vm.userData)
         vm.getUser(vm.userData);
         vm.getFeed()

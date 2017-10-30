@@ -11,40 +11,22 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
-  function controller($state, $http, dataService, loginService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', 'birthdayService']
+  function controller($state, $http, dataService, loginService, birthdayService) {
     const vm = this;
-
-    vm.days = [];
-    vm.months = [];
-    vm.years = [];
 
 
     vm.$onInit = function() {
       vm.userData = loginService.user;
       vm.newUser = {year: 'Year', month: 'Month', day: 'Day'}
-      vm.createDays();
-      vm.createMonths();
-      vm.createYears();
+      birthdayService.populate();
+      vm.days = birthdayService.days;
+      vm.months = birthdayService.months;
+      vm.years = birthdayService.years;
+
     }
 
-    vm.createDays = function() {
-      for (let i = 1; i <= 31; i++) {
-        vm.days.push(i);
-      }
-    }
 
-    vm.createMonths = function() {
-      for (let i = 1; i <= 12; i++) {
-        vm.months.push(i);
-      }
-    }
-
-    vm.createYears = function() {
-      for (let i = 2010; i >= 1932; i--) {
-        vm.years.push(i);
-      }
-    }
 
     vm.addUser = function(user) {
       console.log('adding')

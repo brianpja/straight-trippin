@@ -11,6 +11,11 @@
   margin: auto;
 }
 
+.form-container {
+  width: 800px;
+  margin: auto;
+}
+
 .small-img {
   width: 45px;
   display: inline-block;

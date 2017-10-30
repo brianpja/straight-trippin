@@ -1,1 +1,35 @@
-<h1>Edit</h1>
+<div class="container">
+<h1>Edit Your Profile</h1>
+
+<form class="b">
+  <img class="br2" src="{{$ctrl.user.large_img}}">
+  <label for="first_name">First Name: </label>
+  <input class="br2" type="text" id="first_name" ng-model="$ctrl.user.first_name">
+  <label for="last_name">Last Name: </label>
+  <input class="br2" type="text" id="last_name" ng-model="$ctrl.user.last_name">
+  <label for="email">Email address: </label>
+  <input class="br2" type="text" id="email" ng-model="$ctrl.user.email">
+  Birthday:
+  <select ng-model="$ctrl.user.month">
+    <option value="Month" disabled>Month</option>
+    <option ng-repeat="number in $ctrl.months" required>{{number}}</option>
+  </select>
+  <select ng-model="$ctrl.user.day">
+    <option value="Day" disabled>Day</option>
+    <option ng-repeat="number in $ctrl.days" required>{{number}}</option>
+  </select>
+  <select ng-model="$ctrl.user.year">
+    <option value="Year" disabled>Year</option>
+    <option ng-repeat="number in $ctrl.years" required>{{number}}</option>
+  </select>
+
+  <label for="location">Current location: </label>
+  <input class="br2" type="text" id="location" ng-model="$ctrl.user.location">
+  <div>Are you traveling right now?</div>
+  <select ng-model="$ctrl.user.status">
+    <option value="blank"></option>
+    <option value="trippin">Yeah, I'm straight trippin'</option>
+    <option value="chillin">Nah, I'm just chillin'</option>
+  </select>
+</form>
+</div>

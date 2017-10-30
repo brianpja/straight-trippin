@@ -59,7 +59,7 @@ router.post(`/token`, (req, res, next) => {
 
 router.delete(`/token`, (req, res, next) => {
   res.clearCookie('token');
-  res.end();
+  res.send( {loggedIn: false} );
 })
 
 module.exports = router;
