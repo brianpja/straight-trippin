@@ -12,7 +12,7 @@
 }
 
 .form-container {
-  width: 800px;
+  width: 700px;
   margin: auto;
 }
 
@@ -38,4 +38,9 @@ a {
 a:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.new-photo {
+  width: 300px;
+  text-align: center;
 }

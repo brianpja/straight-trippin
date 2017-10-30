@@ -24,9 +24,7 @@
           if (!response) {
             $state.go('welcome')
           }
-          if (vm.loginService.user.loggedIn) {
-            $state.go('home')
-          }
+  
         })
 
     }

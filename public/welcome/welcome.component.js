@@ -47,7 +47,6 @@
       console.log(user);
       return loginService.login(user)
         .then(function(response) {
-          console.log('userData: ', vm.userData);
 
           // TODO: WHat happens if log fails
           $state.go('home');
