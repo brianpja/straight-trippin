@@ -37,6 +37,16 @@
         })
     }
 
+    vm.updateUser = function(user) {
+      console.log('working')
+      console.log(user);
+      return dataService.updateUser(user)
+        .then(function(response) {
+          console.log(response);
+          $state.go('home');
+        })
+    }
+
 
   }
 }());

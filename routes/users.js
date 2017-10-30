@@ -9,7 +9,7 @@ const boom = require('boom');
 
 router.get('/users', (req, res, next) => {
   knex('users')
-    .then((users) =>{
+    .then((users) => {
       res.send(users)
     })
     .catch((err) => {
@@ -45,20 +45,73 @@ router.post('/users', (req, res, next) => {
         .then(function(result) {
           result = result[0]
 
-          const claim = { userId: result.id };
+          const claim = {
+            userId: result.id
+          };
           const token = jwt.sign(claim, process.env.JWT_KEY, {
             expiresIn: '7 days'
           });
 
           res.cookie('token', token, {
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
             secure: router.get('env') === 'production'
           });
 
           delete result.hashed_password;
           res.send(result)
         })
+        .catch((err) => {
+          next(err);
+        })
+    })
+})
+
+router.patch('/users/:id', (req, res, next) => {
+  console.log(req.body);
+
+  const userData = req.body;
+  createBirthdate(userData);
+
+  const promises = [new Promise((resolve, reject) => {
+    if (userData.password) {
+      bcrypt.hash(userData.password, 12)
+      .then(function(hashed_password) {
+
+        delete userData.password;
+        userData.hashed_password = hashed_password;
+        console.log('post hash userData: ', userData)
+        resolve(hashed_password);
+      })
+    }
+    else {
+      resolve(null);
+    }
+  })]
+
+  Promise.all(promises)
+    .then(function(result) {
+      console.log('result number 1: ', result)
+      return knex('users')
+        .where('id', req.params.id)
+        .update({
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+          email: userData.email,
+          location: userData.location,
+          birthdate: userData.birthdate,
+          status: userData.status,
+          hashed_password: userData.hashed_password
+        }, '*')
+    })
+    .then(function(result) {
+      console.log('result number 2: ', result)
+      result = result[0];
+      delete result.hashed_password;
+      res.send(result);
+    })
+    .catch((err) => {
+      next(err);
     })
 })
 

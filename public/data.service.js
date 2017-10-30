@@ -35,6 +35,13 @@
           })
       }
 
+      this.updateUser = function(obj) {
+        return $http.patch(`/users/${obj.id}`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
+
 
     }
 }());
