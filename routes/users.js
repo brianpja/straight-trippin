@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt-as-promised');
 const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
+
 router.get('/users', (req, res, next) => {
   knex('users')
     .then((users) => {
@@ -76,15 +77,14 @@ router.patch('/users/:id', (req, res, next) => {
   const promises = [new Promise((resolve, reject) => {
     if (userData.password) {
       bcrypt.hash(userData.password, 12)
-      .then(function(hashed_password) {
+        .then(function(hashed_password) {
 
-        delete userData.password;
-        userData.hashed_password = hashed_password;
-        console.log('post hash userData: ', userData)
-        resolve(hashed_password);
-      })
-    }
-    else {
+          delete userData.password;
+          userData.hashed_password = hashed_password;
+          console.log('post hash userData: ', userData)
+          resolve(hashed_password);
+        })
+    } else {
       resolve(null);
     }
   })]
@@ -114,6 +114,8 @@ router.patch('/users/:id', (req, res, next) => {
       next(err);
     })
 })
+
+
 
 function createBirthdate(obj) {
   let day = obj.day;

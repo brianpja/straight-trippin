@@ -1,10 +1,15 @@
 <div class="form-container">
   <h1>Edit Your Profile</h1>
 
-  <form class="b" ng-submit="$ctrl.updateUser($ctrl.user)">
+  <form class="b" >
     <div class="fl w-50 center">
       <img class="br2" src="{{$ctrl.user.large_img}}">
-      <div class="new-photo"><a>Add a new photo?</a></div>
+      <div class="new-photo"><a ng-click="$ctrl.toggleShowInput()">Add a new photo?</a></div>
+      <div class="new-photo" ng-if="$ctrl.showInput">
+        <div class="normal f6">Image file name: </div>
+        <input class="br2" type="file" fileupload="$ctrl.uploadFile">
+        <div><button class="br2 mt1" ng-click="$ctrl.addImage($ctrl.imageInput, $ctrl.user.id)">add photo</button></div>
+      </div>
     </div>
     <div class="fl w-50">
       <div class="ml1 mv3">
@@ -58,7 +63,7 @@
       </div>
 
       <div class="mt4 ml4">
-        <button class="br2" type="submit">Save Changes</button>
+        <button class="br2" type="submit" ng-click="$ctrl.updateUser($ctrl.user)">Save Changes</button>
       </div>
 
     </div>

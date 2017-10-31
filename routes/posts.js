@@ -6,6 +6,7 @@ const knex = require('../knex');
 const bcrypt = require('bcrypt-as-promised');
 const jwt = require('jsonwebtoken');
 const boom = require('boom');
+const cloudinary = require('cloudinary')
 
 router.get('/posts', (req, res, next) => {
 

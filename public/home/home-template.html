@@ -14,7 +14,7 @@
             <div class="small-img dib">
               <img class="br2" src="{{post.small_img}}">
             </div>
-            <!-- <img class="br2" src="http://lorempixel.com/40/40"> -->
+
             <div class="dib">
             {{post.first_name}} {{post.last_name}}
 
@@ -39,7 +39,8 @@
         {{post.content}}
       </p>
       <div ng-if="post.images.length">
-        <img class="br2 center" src="{{post.images[0].url}}">
+        <!-- <img class="br2 center" src="{{post.images[0].url}}"> -->
+        <img class="br2 center" src="http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509467716/sample.jpg">
       </div>
       <div class="f6 mv3">
         <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"

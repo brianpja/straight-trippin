@@ -26,6 +26,7 @@
       vm.days = birthdayService.days;
       vm.months = birthdayService.months;
       vm.years = birthdayService.years;
+      vm.showInput = false;
     }
 
     vm.getUser = function(user) {
@@ -38,7 +39,6 @@
     }
 
     vm.updateUser = function(user) {
-      console.log('working')
       console.log(user);
       return dataService.updateUser(user)
         .then(function(response) {
@@ -46,6 +46,39 @@
           $state.go('home');
         })
     }
+
+    vm.toggleShowInput = function() {
+      vm.showInput = !vm.showInput;
+    }
+
+    vm.addImage = function(file, userId) {
+
+      console.log('adding');
+      console.log(vm.imageInput)
+      const postObj = { file_name: file, id: userId }
+      return dataService.addImage(postObj)
+        .then(function(response) {
+          console.log('response: ', response);
+        })
+
+    }
+
+    vm.uploadFile = function(event){
+        var files = event.target.files;
+        console.log(files)
+
+        if (files[0]) {
+          const formData = new FormData();
+
+          formData.append('file', files[0]);
+          console.log('formData: ', formData)
+
+          $http.post('/profile', formData, {headers: {'Content-Type': undefined}})
+            .then(function(response) {
+              console.log(response);
+            })
+        }
+    };
 
 
   }

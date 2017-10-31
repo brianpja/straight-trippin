@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+
 if (process.env.NODE_ENV !== 'production') {
   const reload = require('reload')
   require('dotenv').config();
@@ -13,7 +14,10 @@ const users = require('./routes/users.js');
 const token = require('./routes/token.js');
 const posts = require('./routes/posts.js');
 const comments = require('./routes/comments.js');
+const images = require('./routes/images.js');
 
+
+app.use(images);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
