@@ -30,9 +30,9 @@ router.post('/profile', upload.single('file'), (req, res, next) => {
   console.log('routing works')
   console.log(req.file);
 
-  cloudinary.v2.uploader.upload(req.file.path, function(result) {
-    console.log(result)
-    res.send(true);
+  cloudinary.v2.uploader.upload(req.file.path, function(error, result) {
+    console.log('result: ', result)
+    res.send(result);
   })
 })
 

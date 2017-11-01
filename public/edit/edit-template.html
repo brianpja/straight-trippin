@@ -3,12 +3,12 @@
 
   <form class="b" >
     <div class="fl w-50 center">
-      <img class="br2" src="{{$ctrl.user.large_img}}">
+      <img class="br2 profile-image" src="{{$ctrl.user.img}}">
       <div class="new-photo"><a ng-click="$ctrl.toggleShowInput()">Add a new photo?</a></div>
       <div class="new-photo" ng-if="$ctrl.showInput">
-        <div class="normal f6">Image file name: </div>
+
         <input class="br2" type="file" fileupload="$ctrl.uploadFile">
-        <div><button class="br2 mt1" ng-click="$ctrl.addImage($ctrl.imageInput, $ctrl.user.id)">add photo</button></div>
+        
       </div>
     </div>
     <div class="fl w-50">

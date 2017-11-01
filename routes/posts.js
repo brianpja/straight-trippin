@@ -18,7 +18,7 @@ router.get('/posts', (req, res, next) => {
       updated_at,
       first_name,
       last_name,
-      small_img,
+      img,
       year,
       user_id,
       (SELECT json_agg(styles)
@@ -35,7 +35,8 @@ router.get('/posts', (req, res, next) => {
           updated_at,
           first_name,
           last_name,
-          small_img
+          img,
+          comments.user_id as user_id
           FROM comments
           INNER JOIN users ON users.id = comments.user_id
           WHERE posts.id = comments.post_id

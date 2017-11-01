@@ -70,7 +70,7 @@
           const retObj = response.data;
           retObj.first_name = vm.user.first_name;
           retObj.last_name = vm.user.last_name;
-          retObj.small_img = vm.user.small_img;
+          retObj.img = vm.user.img;
           post.comments.push(retObj);
           post.showComments = true;
           delete post.commentInput;

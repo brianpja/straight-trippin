@@ -1,6 +1,6 @@
 <h1>Home</h1>
 
-<div>Hello, {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}!</div>
+<div>Hello, <img class="br2 small-image" src="{{$ctrl.user.img}}"> {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}!</div>
 
 <div class="container">
   <div class="f3 ml4">Feed</div>
@@ -12,11 +12,11 @@
         <div class="post-head">
           <div class="f5 mv0 mid-gray dib">
             <div class="small-img dib">
-              <img class="br2" src="{{post.small_img}}">
+              <a ui-sref="profile({id: post.user_id})"><img class="br2 small-image" src="{{post.img}}"></a>
             </div>
 
             <div class="dib">
-            {{post.first_name}} {{post.last_name}}
+            <a ui-sref="profile({id: post.user_id})" class="mid-gray">{{post.first_name}} {{post.last_name}}</a>
 
               <div class="f6">posted <span am-time-ago="post.created_at"></span></div>
             </div>
@@ -48,7 +48,9 @@
                   'other': '{{post.comments.length}} comments'}"></a>
       </div>
       <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
-        <div><a class="b">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}</div>
+        <div>
+          <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
+        </div>
       </div>
       <form ng-submit="$ctrl.postComment(post)">
         <input class="f6 br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>

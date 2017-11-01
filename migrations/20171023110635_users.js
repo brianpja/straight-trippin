@@ -8,8 +8,7 @@ exports.up = function(knex, Promise) {
     table.date('birthdate').notNullable();
     table.string('location').defaultTo('');
     table.string('status').defaultTo('blank');
-    table.string('large_img').defaultTo('http://lorempixel.com/300/300');
-    table.string('small_img').defaultTo('http://lorempixel.com/40/40');
+    table.string('img').defaultTo('http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509559013/blank-profile-picture_h9yvyo.png');
     table.string('hashed_password').notNullable();
   })
 };
