@@ -1,1 +1,71 @@
 <h1>View Profile</h1>
+
+<div class="profile-container">
+  <div class="fl w-40">
+    <img class="br2 profile-image" src="{{$ctrl.profile.img}}">
+    <div class="f4 b">{{$ctrl.profile.first_name}} {{$ctrl.profile.last_name}}</div>
+    <div>Age</div>
+    <div>Location</div>
+    <div>Status</div>
+
+  </div>
+
+
+  <!-- POSTS -->
+  <div class="fl w-60 container">
+    <div>Posts</div>
+
+    <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.posts">
+      <div class="pa2 ph3-ns pb3-ns">
+        <div class="dt w-100 mt1">
+          <div class="post-head">
+            <div class="f5 mv0 mid-gray dib">
+              <div class="small-img dib">
+                <a ui-sref="profile({id: post.user_id})"><img class="br2 small-image" src="{{post.img}}"></a>
+              </div>
+
+              <div class="dib">
+              <a ui-sref="profile({id: post.user_id})" class="mid-gray">{{post.first_name}} {{post.last_name}}</a>
+
+                <div class="f6">posted <span am-time-ago="post.created_at"></span></div>
+              </div>
+
+            </div>
+            <div class="b tr dib post-style">
+              <span ng-pluralize count="post.styles.length"
+              when="{'0': '',
+                      '1': '{{post.styles[0].name}}',
+                      '2': '{{post.styles[0].name}}, {{post.styles[1].name}}',
+                      '3': '{{post.styles[0].name}}, {{post.styles[1].name}}, {{post.styles[2].name}}'}"></span>
+            </div>
+          </div>
+
+          <div class="mt3">
+            <h1 class="f4 mv0">{{post.post_location}}</h1>
+          </div>
+        </div>
+        <p class="f6 lh-copy measure mt2">
+          {{post.content}}
+        </p>
+        <div ng-if="post.images.length">
+          <img class="br2 center" src="{{post.images[0].url}}">
+          <!-- <img class="br2 center" src="http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509467716/sample.jpg"> -->
+        </div>
+        <div class="f6 mv3">
+          <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
+            when="{'1': '{{post.comments.length}} comment',
+                    'other': '{{post.comments.length}} comments'}"></a>
+        </div>
+        <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
+          <div>
+            <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
+          </div>
+        </div>
+        <form ng-submit="$ctrl.postComment(post)">
+          <input class="f6 br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

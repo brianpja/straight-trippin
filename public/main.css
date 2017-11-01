@@ -16,6 +16,11 @@
   margin: auto;
 }
 
+.profile-container {
+  width: 950px;
+  margin: auto;
+}
+
 .small-img {
   width: 45px;
   display: inline-block;

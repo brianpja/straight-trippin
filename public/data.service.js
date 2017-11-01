@@ -43,8 +43,14 @@
       }
 
       this.addImage = function(obj) {
-        console.log('dataService object: ', obj)
         return $http.post(`/profile`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
+
+      this.getPosts = function(obj) {
+        return $http.get(`/users/${obj.id}/posts`)
           .then(function(response) {
             return response;
           })
