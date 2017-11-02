@@ -12,6 +12,8 @@
   function controller($state, $http, dataService, loginService) {
     const vm = this;
 
+    vm.user = loginService.user;
+
     vm.styles = [];
     vm.selectedStyles = [];
 
@@ -43,6 +45,7 @@
     }
 
     vm.submitPost = function(post) {
+      post.user_id = vm.user.id;
       post.styles = vm.selectedStyles;
       return dataService.addPost(post)
         .then(function(response) {
