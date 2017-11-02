@@ -53,7 +53,8 @@
         </div>
         <div class="f6 mv3">
           <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
-            when="{'1': '{{post.comments.length}} comment',
+            when="{'0': 'No comments yet',
+                    '1': '{{post.comments.length}} comment',
                     'other': '{{post.comments.length}} comments'}"></a>
         </div>
         <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
