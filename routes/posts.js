@@ -137,7 +137,9 @@ router.get('/users/:id/posts', (req, res, next) => {
       })
 })
 
-
+router.post('/posts', (req, res, next) => {
+  console.log(req.body);
+})
 
 
 module.exports = router;

@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 450px;
 }
 
 .container {
@@ -18,6 +19,11 @@
 
 .profile-container {
   width: 950px;
+  margin: auto;
+}
+
+.write-container {
+  width: 645px;
   margin: auto;
 }
 
@@ -60,4 +66,15 @@ a:hover {
   width: 40px;
   height: 40px;
   object-fit: cover;
+}
+
+.checkbox-field {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.checkbox {
+  width: 215px;
 }

@@ -1,26 +1,36 @@
 
-<div class="form-container">
+<div class="write-container">
   <h1>Write a new post</h1>
-  <form>
+  <form class="b" ng-submit="$ctrl.submitPost($ctrl.newPost)">
 
-    <div>
-      <label for="where">Where did you go?</label>
-      <input type="text" id="where">
-      <label for="style">What kind of travel?</label>
-      <select>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-      </select>
+    <div class="mv2">
+      <label for="where">Where did you go? </label>
+      <input class="br2" type="text" id="where" ng-model="$ctrl.newPost.location" placeholder="country/city" required autofocus>
+    </div>
+    <div class="mv2">
+      <label>What kind of trip was it? <span class="normal f6">(choose up to three options)</span></label>
     </div>
 
-    <div>
-      <label for="content">What did you do?</label>
-      <textarea type="text" rows="5" cols="40"></textarea>
+    <div class="normal mv1 checkbox-field">
+      <div class="mv1 checkbox" ng-repeat="style in $ctrl.styles | orderBy: 'name'">
+        <label>
+          <input type="checkbox" ng-model="style.checked" ng-change="$ctrl.changeCount(style)" ng-disabled="$ctrl.checkCount == 3 && !style.checked">
+          <span>{{style.name}}</span>
+        </label>
+      </div>
+    </div>
+    <br>
+    <div class="cf">
+      <div class="mv2"><label for="content">What did you do?</label></div>
+      <div><textarea id="content" ng-model="$ctrl.newPost.content" class="br2" type="text" rows="5" cols="65" required></textarea></div>
     </div>
 
-    <div>Add a photo:
-      <input type="file">
+    <div class="mv3">Add a photo:
+      <input class="br2" type="file">
     </div>
-    <button>Post</button>
+
+    <div class="tr">
+      <button class="br2 ph4 mr5">Post</button>
+    </div>
   </form>
 </div>

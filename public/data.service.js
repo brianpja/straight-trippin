@@ -56,6 +56,20 @@
           })
       }
 
+      this.getStyles = function() {
+        return $http.get(`/styles`)
+          .then(function(response) {
+            return response;
+          })
+      }
+
+      this.addPost = function(obj) {
+        return $http.post(`/posts`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
+
 
     }
 }());

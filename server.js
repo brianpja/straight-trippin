@@ -15,6 +15,7 @@ const token = require('./routes/token.js');
 const posts = require('./routes/posts.js');
 const comments = require('./routes/comments.js');
 const images = require('./routes/images.js');
+const styles = require('./routes/styles.js');
 
 
 app.use(images);
@@ -29,6 +30,7 @@ app.use(users);
 app.use(token);
 app.use(posts);
 app.use(comments);
+app.use(styles);
 
 app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')})
