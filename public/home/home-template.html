@@ -6,7 +6,7 @@
   <div class="f3 ml4">Feed</div>
   <button class="ml4" ui-sref="write">Add new post</button>
 
-  <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed">
+  <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true">
     <div class="pa2 ph3-ns pb3-ns">
       <div class="dt w-100 mt1">
         <div class="post-head">
@@ -39,10 +39,10 @@
         {{post.content}}
       </p>
       <div ng-if="post.images.length">
-        <!-- <img class="br2 center" src="{{post.images[0].url}}"> -->
-        <img class="br2 center" src="http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509467716/sample.jpg">
+        <img class="br2 center" src="{{post.images[0].url}}">
+        <!-- <img class="br2 center" src="http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509467716/sample.jpg"> -->
       </div>
-      <div class="f6 mv3">
+      <div ng-if="post.comments.length" class="f6 mv3">
         <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
           when="{'0': 'No comments yet',
                   '1': '{{post.comments.length}} comment',

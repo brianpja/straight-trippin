@@ -138,19 +138,20 @@ router.get('/users/:id/posts', (req, res, next) => {
 })
 
 router.post('/posts', (req, res, next) => {
-  console.log(req.body);
+  console.log('req.body: ', req.body);
   const postObj = {
     user_id: req.body.user_id,
     location: req.body.location,
     content: req.body.content
   }
-
+  // let post;
 
   knex('posts')
     .insert(postObj, '*')
     .then(function(post) {
       console.log(post);
       post = post[0];
+
       const stylesArr = req.body.styles.map(function(obj) {
         return obj = {
           post_id: post.id,
@@ -158,12 +159,25 @@ router.post('/posts', (req, res, next) => {
         }
       })
       console.log(stylesArr)
-      knex('posts_styles')
+      return knex('posts_styles')
         .insert(stylesArr, '*')
         .then(function(styles) {
           console.log(styles);
 
-          res.send(post);
+          console.log('post: ', post)
+
+          const imagesArr = req.body.images.map(function(str) {
+            const obj = {
+              post_id: post.id,
+              url: str
+            }
+            return obj;
+          })
+          return knex('images')
+            .insert(imagesArr, '*')
+            .then(function(images) {
+              res.send(post);
+            })
         })
 
     })

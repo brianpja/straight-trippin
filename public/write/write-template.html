@@ -26,11 +26,16 @@
     </div>
 
     <div class="mv3">Add a photo:
-      <input class="br2" type="file">
+      <input class="br2" type="file" fileupload="$ctrl.uploadFile">
     </div>
 
+    <div ng-if="$ctrl.newPost.images.length">
+      <img src="{{$ctrl.newPost.images[0]}}">
+    </div>
+
+
     <div class="tr">
-      <button class="br2 ph4 mr5">Post</button>
+      <button class="br2 ph4 mr5 mv4">Post</button>
     </div>
   </form>
 </div>

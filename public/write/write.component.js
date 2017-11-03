@@ -18,6 +18,7 @@
     vm.selectedStyles = [];
 
     vm.$onInit = function() {
+      vm.newPost = {};
       vm.getStyles();
       vm.checkCount = 0;
     }
@@ -56,6 +57,29 @@
     vm.findIndex = function(arr, item) {
       for (const index in arr) {
         if (arr[index] === item) return index;
+      }
+    }
+
+    vm.uploadFile = function(event) {
+      if (!vm.newPost.images) {
+        vm.newPost.images = [];
+      }
+      var files = event.target.files;
+      console.log(event)
+      console.log(files)
+
+      if (files[0]) {
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+        console.log('formData: ', formData)
+
+        $http.post('/images', formData, {headers: {'Content-Type': undefined}})
+          .then(function(response) {
+            console.log(response);
+            vm.newPost.images.push(response.data.url);
+            console.log(vm.newPost)
+          })
       }
     }
 
