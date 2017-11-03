@@ -12,6 +12,7 @@ exports.seed = function(knex, Promise) {
         birthdate: '1986-07-30',
         status: 'chillin',
         location: 'Seattle, WA, USA',
+        bio: 'This is information about me and the way I like to travel. It will show up in my profile.',
         img: 'http://res.cloudinary.com/hs8ytl7eb/image/upload/v1509557387/as2f3xgkrbba3p2c1bv3.jpg',
         hashed_password: 'password'}
       ]);

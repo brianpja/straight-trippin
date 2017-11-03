@@ -8,7 +8,7 @@
       <div class="new-photo" ng-if="$ctrl.showInput">
 
         <input class="br2" type="file" fileupload="$ctrl.uploadFile">
-        
+
       </div>
     </div>
     <div class="fl w-50">
@@ -60,6 +60,12 @@
           <option value="trippin">Yeah, I'm straight trippin'</option>
           <option value="chillin">Nah, I'm just chillin'</option>
         </select>
+      </div>
+
+      <div class="ml1 mv3">
+        <label for="bio" class="mb2">About me:</label>
+        <textarea class="br2 b--light-silver" id="bio" ng-model="$ctrl.user.bio" type="text" rows="5" cols="40" placeholder="Tell us about yourself and how you like to take trips...">
+      </textarea>
       </div>
 
       <div class="mt4 ml4">

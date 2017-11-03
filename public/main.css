@@ -8,6 +8,14 @@
   min-width: 450px;
 }
 
+.top {
+  color: #CDECFF;
+}
+
+.top:hover {
+  text-decoration: none;
+}
+
 
 .container {
   width: 600px;
@@ -79,4 +87,8 @@ a:hover {
 
 .checkbox {
   width: 215px;
+}
+
+.bio {
+  width: 300px;
 }

@@ -22,7 +22,7 @@
     <br>
     <div class="cf">
       <div class="mv2"><label for="content">What did you do?</label></div>
-      <div><textarea id="content" ng-model="$ctrl.newPost.content" class="br2" type="text" rows="5" cols="65" required></textarea></div>
+      <div><textarea id="content" ng-model="$ctrl.newPost.content" class="br2 b--light-silver" type="text" rows="5" cols="65" required></textarea></div>
     </div>
 
     <div class="mv3">Add a photo:
@@ -30,7 +30,7 @@
     </div>
 
     <div ng-if="$ctrl.newPost.images.length">
-      <img src="{{$ctrl.newPost.images[0]}}">
+      <img class="br2" src="{{$ctrl.newPost.images[0]}}">
     </div>
 
 

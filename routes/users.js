@@ -101,6 +101,7 @@ router.patch('/users/:id', (req, res, next) => {
           location: userData.location,
           birthdate: userData.birthdate,
           status: userData.status,
+          bio: userData.bio,
           hashed_password: userData.hashed_password,
           img: userData.img
         }, '*')
