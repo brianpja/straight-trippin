@@ -51,6 +51,7 @@
       return dataService.addPost(post)
         .then(function(response) {
           console.log(response);
+          $state.go('home')
         })
     }
 
