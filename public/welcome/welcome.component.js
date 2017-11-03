@@ -29,22 +29,18 @@
 
 
     vm.addUser = function(user) {
-      console.log('adding')
       return dataService.addUser(user)
         .then(function(response) {
-          console.log('response: ', response);
           return loginService.isLoggedIn()
         })
         .then(function(response){
           if(response){
             $state.go('edit');
-
           }
         })
     }
 
     vm.login = function(user) {
-      console.log(user);
       return loginService.login(user)
         .then(function(response) {
 
@@ -52,7 +48,7 @@
           $state.go('home');
         })
         .catch(function(err){
-          //login unsuccessful
+          console.log(err)
         })
     }
 

@@ -16,7 +16,6 @@
       return $http.post(`/token`, obj)
         .then(function(response) {
           vm.user = response.data;
-          console.log('response from login service: ', response)
           return response;
         })
     }
@@ -24,7 +23,6 @@
     this.logout = function() {
       return $http.delete(`/token`)
         .then(function(response) {
-          console.log('response from logout service: ', response)
           vm.user = response.data;
           return response;
         })
@@ -35,8 +33,6 @@
         .then(function(response) {
           if (response.data) {
             vm.user = response.data;
-
-
           } else {
             vm.user.loggedIn = false;
           }

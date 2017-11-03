@@ -42,12 +42,12 @@
           })
       }
 
-      this.addImage = function(obj) {
-        return $http.post(`/profile`, obj)
-          .then(function(response) {
-            return response;
-          })
-      }
+      // this.addImage = function(obj) {
+      //   return $http.post(`/profile`, obj)
+      //     .then(function(response) {
+      //       return response;
+      //     })
+      // }
 
       this.getPosts = function(obj) {
         return $http.get(`/users/${obj.id}/posts`)

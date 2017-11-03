@@ -66,23 +66,20 @@
         vm.newPost.images = [];
       }
       var files = event.target.files;
-      console.log(event)
-      console.log(files)
 
       if (files[0]) {
         const formData = new FormData();
 
         formData.append('file', files[0]);
-        console.log('formData: ', formData)
 
         $http.post('/images', formData, {headers: {'Content-Type': undefined}})
           .then(function(response) {
-            console.log(response);
             vm.newPost.images.push(response.data.url);
-            console.log(vm.newPost)
           })
       }
     }
+
+    
 
   }
 }());
