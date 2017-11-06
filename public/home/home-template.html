@@ -1,9 +1,13 @@
-<h1>Home</h1>
 
-<div>Hello, <img class="br2 small-image" src="{{$ctrl.user.img}}"> {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}!</div>
+<div class="sidebar f4 bg-mid-gray lightest-blue">
+  <div class="pt4">
+    <a><img class="br2 small-image" src="{{$ctrl.user.img}}"></a> <a>{{$ctrl.user.first_name}}</a>
+  </div>
+</div>
 
-<div class="container">
-  <div class="f3 ml4">Feed</div>
+<div class="content">
+<div class="container mt3">
+  <div class="f3 ml4">Home Feed</div>
   <button class="ml4" ui-sref="write">Add new post</button>
 
   <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true">
@@ -58,4 +62,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>
