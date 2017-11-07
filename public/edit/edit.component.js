@@ -47,13 +47,6 @@
       vm.showInput = !vm.showInput;
     }
 
-    // vm.addImage = function(file, userId) {
-    //   const postObj = { file_name: file, id: userId }
-    //   return dataService.addImage(postObj)
-    //     .then(function(response) {
-    //
-    //     })
-    // }
 
     vm.uploadFile = function(event){
         var files = event.target.files;

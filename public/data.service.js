@@ -42,12 +42,6 @@
           })
       }
 
-      // this.addImage = function(obj) {
-      //   return $http.post(`/profile`, obj)
-      //     .then(function(response) {
-      //       return response;
-      //     })
-      // }
 
       this.getPosts = function(obj) {
         return $http.get(`/users/${obj.id}/posts`)
@@ -65,6 +59,13 @@
 
       this.addPost = function(obj) {
         return $http.post(`/posts`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
+
+      this.deletePost = function(obj) {
+        return $http.delete(`/posts/${obj.post_id}`)
           .then(function(response) {
             return response;
           })

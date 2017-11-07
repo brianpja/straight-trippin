@@ -25,6 +25,9 @@
         vm.userData = loginService.user;
         vm.getUser(vm.userData);
         vm.getFeed()
+          .then(function() {
+            console.log(vm.feed);
+          })
 
     }
 
@@ -72,8 +75,22 @@
     vm.logout = function() {
       return loginService.logout()
         .then(function(response) {
-          $state.go('welcome')
+          $state.go('welcome');
         })
+    }
+
+    vm.deletePost = function(post) {
+      return dataService.deletePost(post)
+        .then(function(response) {
+          const index = vm.findIndex(vm.feed, response.data);
+          vm.feed.splice(index, 1);
+        })
+    }
+
+    vm.findIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].post_id === item.id) return index;
+      }
     }
 
   }

@@ -138,18 +138,15 @@ router.get('/users/:id/posts', (req, res, next) => {
 })
 
 router.post('/posts', (req, res, next) => {
-  console.log('req.body: ', req.body);
   const postObj = {
     user_id: req.body.user_id,
     location: req.body.location,
     content: req.body.content
   }
-  // let post;
 
   knex('posts')
     .insert(postObj, '*')
     .then(function(post) {
-      console.log(post);
       post = post[0];
 
       if (!req.body.styles) {
@@ -161,13 +158,10 @@ router.post('/posts', (req, res, next) => {
           style_id: obj.id
         }
       })
-      console.log(stylesArr)
+
       return knex('posts_styles')
         .insert(stylesArr, '*')
         .then(function(styles) {
-          console.log(styles);
-
-          console.log('post: ', post)
 
           if (!req.body.images) {
             req.body.images = [];
@@ -184,12 +178,30 @@ router.post('/posts', (req, res, next) => {
             .then(function(images) {
               res.send(post);
             })
-
-
         })
 
     })
 
+    .catch((err) => {
+      next(err);
+    })
+})
+
+router.delete('/posts/:id', (req, res, next) => {
+  let retVal;
+  knex('posts')
+    .where('posts.id', req.params.id)
+    .first()
+    .then(function(post) {
+      if (!post) return next();
+      retVal = post;
+      return knex('posts')
+        .where('posts.id', req.params.id)
+        .del()
+    })
+    .then(function() {
+      res.send(retVal);
+    })
     .catch((err) => {
       next(err);
     })
