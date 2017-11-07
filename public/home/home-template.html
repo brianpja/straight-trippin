@@ -5,7 +5,7 @@
     <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
   </div>
   <div class="pt4">
-    <a class="lightest-blue">Following</a>
+    <a class="lightest-blue">People</a>
   </div>
   <div class="pt3">
     <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="content">
-<div class="container mt3">
+<div class="container mt3 mb4">
   <div class="f3 ml4">Home Feed</div>
   <button class="ml4" ui-sref="write">Add new post</button>
 
@@ -29,14 +29,14 @@
             <div class="dib">
             <a ui-sref="profile({id: post.user_id})" class="mid-gray">{{post.first_name}} {{post.last_name}}</a>
 
-              <div class="f6">posted <span am-time-ago="post.created_at"></span></div>
+              <div class="f6 mid-gray">posted <span am-time-ago="post.created_at"></span></div>
             </div>
 
           </div>
           <div class="b tr dib post-style">
             <div class="mb2">
-              <span ng-if="$ctrl.user.id === post.user_id" class="f6 normal light-gray">
-                <a class="light-anchor">edit</a> or <a class="light-anchor" ng-click="$ctrl.deletePost(post)">delete</a>
+              <span ng-if="$ctrl.user.id === post.user_id" class="f6 normal moon-gray">
+                <a class="light-anchor" ng-click="$ctrl.deletePost(post)">delete post</a>
               </span>
             </div>
 
@@ -66,8 +66,11 @@
                   'other': '{{post.comments.length}} comments'}"></a>
       </div>
       <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
-        <div>
+        <div ng-mouseover="$ctrl.showDelete(comment)" ng-mouseleave="$ctrl.noDelete(comment)">
           <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
+          <div ng-if="$ctrl.user.id === comment.user_id && comment.showDelete" class="ml2">
+            <a class="f6 moon-gray light-anchor" ng-click="$ctrl.deleteComment(comment)">delete comment</a>
+          </div>
         </div>
       </div>
       <form ng-submit="$ctrl.postComment(post)">

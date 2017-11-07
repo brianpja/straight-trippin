@@ -8,11 +8,9 @@ const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
 router.post('/comments', (req, res, next) => {
-  console.log(req.body)
   knex('comments')
     .insert(req.body, '*')
     .then(function(comment) {
-      console.log('responding with: ', comment)
       comment = comment[0];
       res.send(comment)
     })
@@ -22,7 +20,26 @@ router.post('/comments', (req, res, next) => {
     })
 })
 
-
+router.delete('/comments/:id', (req, res, next) => {
+  console.log(req.params);
+  let retVal;
+  knex('comments')
+    .where('comments.id', req.params.id)
+    .first()
+    .then(function(comment) {
+      if (!comment) return next();
+      retVal = comment;
+      return knex('comments')
+        .where('comments.id', req.params.id)
+        .del()
+    })
+    .then(function() {
+      res.send(retVal);
+    })
+    .catch((err) => {
+      next(err);
+    })
+})
 
 
 module.exports = router;

@@ -1,10 +1,9 @@
-<h1>View Profile</h1>
 
-<div class="profile-container">
+
+<div class="profile-container mt4">
   <div class="fl w-40">
     <img class="br2 profile-image" src="{{$ctrl.profile.img}}">
     <div class="f4 b">{{$ctrl.profile.first_name}} {{$ctrl.profile.last_name}}, {{$ctrl.profile.age}}</div>
-    <!-- <div>Age: {{$ctrl.profile.age}}</div> -->
     <div>{{$ctrl.profile.location}}</div>
     <div ng-if="$ctrl.profile.status === 'chillin'">Just chillin'</div>
     <div ng-if="$ctrl.profile.status === 'trippin'">Straight trippin'</div>
@@ -23,7 +22,7 @@
 
 
   <!-- POSTS -->
-  <div class="fl w-60 container">
+  <div class="fl w-60 container mb4">
     <div>Posts</div>
 
     <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.posts | orderBy: 'created_at' : true">
@@ -43,7 +42,11 @@
 
             </div>
             <div class="b tr dib post-style">
-              <div class="mb2"><span ng-if="$ctrl.user.id === post.user_id" class="f6 normal light-gray"><a class="light-anchor">edit</a> or <a class="light-anchor">delete</a></span></div>
+              <div class="mb2">
+                <span ng-if="$ctrl.user.id === post.user_id" class="f6 normal moon-gray">
+                  <a ng-click="$ctrl.deletePost(post)" class="light-anchor">delete post</a>
+                </span>
+              </div>
               <span ng-pluralize count="post.styles.length"
               when="{'0': '',
                       '1': '{{post.styles[0].name}}',
@@ -69,8 +72,11 @@
                     'other': '{{post.comments.length}} comments'}"></a>
         </div>
         <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
-          <div>
+          <div ng-mouseover="$ctrl.showDelete(comment)" ng-mouseleave="$ctrl.noDelete(comment)">
             <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
+            <div ng-if="$ctrl.user.id === comment.user_id && comment.showDelete" class="ml2">
+              <a class="f6 moon-gray light-anchor" ng-click="$ctrl.deleteComment(comment)">delete comment</a>
+            </div>
           </div>
         </div>
         <form ng-submit="$ctrl.postComment(post)">

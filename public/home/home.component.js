@@ -65,6 +65,7 @@
           retObj.first_name = vm.user.first_name;
           retObj.last_name = vm.user.last_name;
           retObj.img = vm.user.img;
+          // retObj.showDelete = false;
 
           post.comments.push(retObj);
           post.showComments = true;
@@ -90,6 +91,37 @@
     vm.findIndex = function(arr, item) {
       for (const index in arr) {
         if (arr[index].post_id === item.id) return index;
+      }
+    }
+
+    vm.showDelete = function(obj) {
+      obj.showDelete = true;
+    }
+
+    vm.noDelete = function(obj) {
+      obj.showDelete = false;
+    }
+
+    vm.deleteComment = function(comment) {
+      console.log(comment);
+      return dataService.deleteComment(comment)
+        .then(function(response) {
+          console.log(response);
+          const postIndex = vm.findPostIndex(vm.feed, response.data);
+          const commentIndex = vm.findCommentIndex(vm.feed[postIndex].comments, response.data);
+          vm.feed[postIndex].comments.splice(commentIndex, 1);
+        })
+    }
+
+    vm.findPostIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].post_id === item.post_id) return index;
+      }
+    }
+
+    vm.findCommentIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].comment_id === item.id) return index;
       }
     }
 

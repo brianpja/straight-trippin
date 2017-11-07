@@ -25,7 +25,10 @@
           console.log(vm.profile)
         })
 
-      vm.getPosts(idObj);
+      vm.getPosts(idObj)
+        .then(function() {
+          console.log(vm.posts);
+        })
       vm.getUser(vm.user);
     }
 
@@ -81,7 +84,6 @@
     }
 
     vm.postComment = function(post) {
-
       const commentObj = {
         user_id: vm.user.id,
         post_id: post.post_id,
@@ -102,6 +104,50 @@
         })
     }
 
+    vm.findIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].post_id === item.id) return index;
+      }
+    }
+
+    vm.deletePost = function(post) {
+      return dataService.deletePost(post)
+        .then(function(response) {
+          const index = vm.findIndex(vm.posts, response.data);
+          vm.posts.splice(index, 1);
+        })
+    }
+
+    vm.showDelete = function(obj) {
+      obj.showDelete = true;
+    }
+
+    vm.noDelete = function(obj) {
+      obj.showDelete = false;
+    }
+
+    vm.deleteComment = function(comment) {
+      console.log(comment);
+      return dataService.deleteComment(comment)
+        .then(function(response) {
+          console.log(response);
+          const postIndex = vm.findPostIndex(vm.posts, response.data);
+          const commentIndex = vm.findCommentIndex(vm.posts[postIndex].comments, response.data);
+          vm.posts[postIndex].comments.splice(commentIndex, 1);
+        })
+    }
+
+    vm.findPostIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].post_id === item.post_id) return index;
+      }
+    }
+
+    vm.findCommentIndex = function(arr, item) {
+      for (const index in arr) {
+        if (arr[index].comment_id === item.id) return index;
+      }
+    }
 
   }
 }());

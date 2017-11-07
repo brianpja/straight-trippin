@@ -71,6 +71,13 @@
           })
       }
 
+      this.deleteComment = function(obj) {
+        return $http.delete(`/comments/${obj.comment_id}`)
+          .then(function(response) {
+            return response;
+          })
+      }
+
 
     }
 }());

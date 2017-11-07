@@ -36,7 +36,9 @@ router.get('/posts', (req, res, next) => {
           first_name,
           last_name,
           img,
-          comments.user_id as user_id
+          comments.user_id as user_id,
+          comments.id as comment_id,
+          comments.post_id as post_id
           FROM comments
           INNER JOIN users ON users.id = comments.user_id
           WHERE posts.id = comments.post_id
@@ -56,6 +58,10 @@ router.get('/posts', (req, res, next) => {
           if (!post.comments) {
             post.comments = [];
           }
+          post.comments = post.comments.map(function(comment) {
+            comment.showDelete = false;
+            return comment;
+          })
           if (!post.images) {
             post.images = [];
           }
@@ -100,7 +106,9 @@ router.get('/users/:id/posts', (req, res, next) => {
           first_name,
           last_name,
           img,
-          comments.user_id as user_id
+          comments.user_id as user_id,
+          comments.id as comment_id,
+          comments.post_id as post_id
           FROM comments
           INNER JOIN users ON users.id = comments.user_id
           WHERE posts.id = comments.post_id
@@ -121,6 +129,10 @@ router.get('/users/:id/posts', (req, res, next) => {
           if (!post.comments) {
             post.comments = [];
           }
+          post.comments = post.comments.map(function(comment) {
+            comment.showDelete = false;
+            return comment;
+          })
           if (!post.images) {
             post.images = [];
           }
