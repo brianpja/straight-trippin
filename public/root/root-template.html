@@ -1,16 +1,16 @@
 <div class="window">
   <div class="header bg-dark-gray">
-    <div class="empty"></div>
+    <div class="empty"><span></span></div>
     <div class="title lightest-blue b f1 i">
       <a class="top" ui-sref="home">Straight Trippin'</a>
     </div>
 
-    <div class="sub-header lightest-blue f6 tr pr3">Toolbar:
+    <div class="sub-header lightest-blue f6 tr pr3">
+      <a class="lightest-blue" ui-sref="home" ng-if="$ctrl.loginService.user.loggedIn">Home</a>
+      <a class="lightest-blue" ui-sref="profile({id: $ctrl.loginService.user.id})" ng-if="$ctrl.loginService.user.loggedIn">Profile</a>
+      <!-- <a class="lightest-blue" ui-sref="edit" ng-if="$ctrl.loginService.user.loggedIn">Edit</a> -->
       <a class="lightest-blue" ng-click="$ctrl.logout()" ng-if="$ctrl.loginService.user.loggedIn">Logout</a>
-      <a class="lightest-blue" ui-sref="home" ng-if="$ctrl.loginService.user.loggedIn">home</a>
-      <a class="lightest-blue" ui-sref="edit" ng-if="$ctrl.loginService.user.loggedIn">edit</a>
-      <a class="lightest-blue" ui-sref="welcome" ng-if="!$ctrl.loginService.user.loggedIn">welcome</a>
-      <a class="lightest-blue" ui-sref="profile({id: $ctrl.loginService.user.id})" ng-if="$ctrl.loginService.user.loggedIn">profile</a>
+      <a class="lightest-blue" ui-sref="welcome" ng-if="!$ctrl.loginService.user.loggedIn">Welcome</a>
     </div>
   </div>
 

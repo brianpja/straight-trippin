@@ -26,7 +26,6 @@
     vm.logout = function() {
       return loginService.logout()
         .then(function(response) {
-          vm.userData = loginService.user;
           $state.go('welcome')
         })
     }

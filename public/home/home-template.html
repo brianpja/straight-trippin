@@ -1,7 +1,14 @@
 
 <div class="sidebar f4 bg-mid-gray lightest-blue">
   <div class="pt4">
-    <a><img class="br2 small-image" src="{{$ctrl.user.img}}"></a> <a>{{$ctrl.user.first_name}}</a>
+    <a ui-sref="profile({id: $ctrl.user.id})"><img class="br2 small-image" src="{{$ctrl.user.img}}"></a>
+    <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
+  </div>
+  <div class="pt4">
+    <a class="lightest-blue">Following</a>
+  </div>
+  <div class="pt3">
+    <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
   </div>
 </div>
 
@@ -27,6 +34,8 @@
 
           </div>
           <div class="b tr dib post-style">
+            <div class="mb2"><span ng-if="$ctrl.user.id === post.user_id" class="f6 normal light-gray"><a class="light-anchor">edit</a> or <a class="light-anchor">delete</a></span></div>
+
             <span ng-pluralize count="post.styles.length"
             when="{'0': '',
                     '1': '{{post.styles[0].name}}',

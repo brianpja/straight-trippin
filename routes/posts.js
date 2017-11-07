@@ -152,6 +152,9 @@ router.post('/posts', (req, res, next) => {
       console.log(post);
       post = post[0];
 
+      if (!req.body.styles) {
+        req.body.styles = [];
+      }
       const stylesArr = req.body.styles.map(function(obj) {
         return obj = {
           post_id: post.id,
@@ -166,18 +169,23 @@ router.post('/posts', (req, res, next) => {
 
           console.log('post: ', post)
 
-          const imagesArr = req.body.images.map(function(str) {
-            const obj = {
-              post_id: post.id,
-              url: str
-            }
-            return obj;
-          })
-          return knex('images')
+          if (!req.body.images) {
+            req.body.images = [];
+          }
+            const imagesArr = req.body.images.map(function(str) {
+              const obj = {
+                post_id: post.id,
+                url: str
+              }
+              return obj;
+            })
+            return knex('images')
             .insert(imagesArr, '*')
             .then(function(images) {
               res.send(post);
             })
+
+
         })
 
     })

@@ -25,9 +25,7 @@
         vm.userData = loginService.user;
         vm.getUser(vm.userData);
         vm.getFeed()
-          .then(function() {
 
-          })
     }
 
     vm.getUser = function(user) {
@@ -68,6 +66,13 @@
           post.comments.push(retObj);
           post.showComments = true;
           delete post.commentInput;
+        })
+    }
+
+    vm.logout = function() {
+      return loginService.logout()
+        .then(function(response) {
+          $state.go('welcome')
         })
     }
 
