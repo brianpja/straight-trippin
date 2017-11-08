@@ -14,6 +14,7 @@
 
     vm.user = {};
     vm.people = [];
+    vm.showFollow = false;
 
     vm.$onInit = function() {
       vm.getUser(loginService.user);
@@ -41,6 +42,18 @@
         .then(function(response) {
           vm.user = response.data;
         })
+    }
+
+    vm.logout = function() {
+      return loginService.logout()
+        .then(function(response) {
+          $state.go('welcome');
+        })
+    }
+
+    vm.follow = function(person) {
+      console.log('click')
+      console.log(person);
     }
 
 

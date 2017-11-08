@@ -72,8 +72,6 @@ ui-view {
   margin: auto;
 }
 
-
-
 .form-container {
   width: 700px;
   margin: auto;
@@ -87,6 +85,12 @@ ui-view {
 .write-container {
   width: 645px;
   margin: auto;
+}
+
+.login-container {
+  width: 300px;
+  margin: auto;
+  /*text-align: center;*/
 }
 
 .small-img {

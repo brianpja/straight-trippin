@@ -17,7 +17,8 @@ exports.seed = function(knex, Promise) {
         {id: 10, name: 'Business Travel'},
         {id: 11, name: 'Long Term Travel'},
         {id: 12, name: 'Luxury Travel'},
-        {id: 13, name: 'Family Travel'}
+        {id: 13, name: 'Family Travel'},
+        {id: 14, name: 'Food/Beverage'}
       ]);
     })
     .then(() => {

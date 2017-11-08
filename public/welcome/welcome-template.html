@@ -1,21 +1,22 @@
-<div class=" ma4 ">
+<!-- <div class="content"> -->
+<div class="mv4 login-container">
 
   <div class="f3 mb2">Login</div>
   <form ng-submit="$ctrl.login($ctrl.userLogin)">
-    <input class="br2" placeholder="email" ng-model="$ctrl.userLogin.email"></input>
-    <input class="br2" type="password" placeholder="password" ng-model="$ctrl.userLogin.password"></input>
-    <button class="br2" type="submit">Go</button>
+    <div><input class="br2 mv1" placeholder="Email" ng-model="$ctrl.userLogin.email"></input></div>
+    <div><input class="br2 mv1" type="password" placeholder="Password" ng-model="$ctrl.userLogin.password"></input></div>
+    <div class="tr"><button class="br2 mv1 mr6" type="submit">Go</button></div>
   </form>
 
-  <div class="ma4">or</div>
+  <div class="mv4">or</div>
   <div class="f3 mb2">Create a new account</div>
   <form ng-submit="$ctrl.addUser($ctrl.newUser)">
-    <input class="br2" placeholder="First name" ng-model="$ctrl.newUser.first_name"></input>
-    <input class="br2" placeholder="Last name" ng-model="$ctrl.newUser.last_name"></input>
-    <input class="br2" placeholder="Email" ng-model="$ctrl.newUser.email"></input>
-    <input class="br2" type="password" placeholder="New password" ng-model="$ctrl.newUser.password"></input>
+    <div><input class="br2 mv1" placeholder="First name" ng-model="$ctrl.newUser.first_name"></input></div>
+    <div><input class="br2 mv1" placeholder="Last name" ng-model="$ctrl.newUser.last_name"></input></div>
+    <div><input class="br2 mv1" placeholder="Email" ng-model="$ctrl.newUser.email"></input></div>
+    <div><input class="br2 mv1" type="password" placeholder="New password" ng-model="$ctrl.newUser.password"></input></div>
 
-    <div class="ma2">Birthday:
+    <div class="mv2">Birthday:
       <select ng-model="$ctrl.newUser.month">
         <option value="Month" disabled>Month</option>
         <option ng-repeat="number in $ctrl.months" required>{{number}}</option>
@@ -30,7 +31,8 @@
       </select>
     </div>
 
-    <button class="br2" type="submit">Create Account</button>
+    <div class="mv3"><button class="br2" type="submit">Create Account</button></div>
   </form>
 
 </div>
+<!-- </div> -->
