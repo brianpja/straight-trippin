@@ -15,14 +15,25 @@
 
 <div class="content">
 <div class="container">
-  <h1>People</h1>
-  <div class="mv4 mr3 tc f3"><a class="b black mh3" ng-click="$ctrl.showFollow = false">Everyone</a> | <a class="b black mh3" ng-click="$ctrl.showFollow = true">People You Follow</a></div>
+
+  <div class="mt5 mb4 mr3 tc f3"><a class="b black mh3" ng-click="$ctrl.showFollow = false">Everyone</a> | <a class="b black mh3" ng-click="$ctrl.showFollow = true">People You Follow</a></div>
   <div ng-if="!$ctrl.showFollow" ng-repeat="person in $ctrl.people">
     <a ui-sref="profile({id: person.id})"><img class="br2 small-image" src="{{person.img}}"></a>
     <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
     <span ng-if="person.id !== $ctrl.user.id">
       <a class="black b" ui-sref="profile({id: person.id})">{{person.first_name}} {{person.last_name}}</a>, {{person.age}}<span ng-if="person.location.length && person.status === 'blank'">, {{person.location}}</span><span ng-if="!person.location.length && person.status !== 'blank'">, {{person.status}}'</span><span ng-if="person.location.length && person.status !=='blank'">, {{person.status}}' in {{person.location}}</span>
-      <span class="f6 moon-gray tr"> <a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
+      <span ng-if="!person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
+      <span ng-if="person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.unfollow(person)">unfollow</a></span>
+    </span>
+  </div>
+
+  <div ng-if="$ctrl.showFollow" ng-repeat="person in $ctrl.people | filter: {isFollow: true}">
+    <a ui-sref="profile({id: person.id})"><img class="br2 small-image" src="{{person.img}}"></a>
+    <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
+    <span ng-if="person.id !== $ctrl.user.id">
+      <a class="black b" ui-sref="profile({id: person.id})">{{person.first_name}} {{person.last_name}}</a>, {{person.age}}<span ng-if="person.location.length && person.status === 'blank'">, {{person.location}}</span><span ng-if="!person.location.length && person.status !== 'blank'">, {{person.status}}'</span><span ng-if="person.location.length && person.status !=='blank'">, {{person.status}}' in {{person.location}}</span>
+      <span ng-if="!person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
+      <span ng-if="person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.unfollow(person)">unfollow</a></span>
     </span>
   </div>
 </div>

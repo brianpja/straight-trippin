@@ -14,18 +14,37 @@
 
     vm.user = {};
     vm.people = [];
+    vm.follows = [];
     vm.showFollow = false;
 
     vm.$onInit = function() {
-      vm.getUser(loginService.user);
-      console.log('user: ', vm.user)
+
       vm.getUsers()
         .then(function() {
-          vm.users = vm.people.map(function(obj) {
+          vm.people = vm.people.map(function(obj) {
             obj.age = birthdayService.calculateAge(obj.birthdate)
             return obj;
           })
-          console.log(vm.people);
+        })
+        .then(function() {
+          return vm.getUser(loginService.user)
+        })
+        .then(function() {
+          return vm.getFollows(vm.user)
+        })
+        .then(function() {
+          vm.people = vm.people.map(function(person) {
+            person.isFollow = false;
+
+            for (const follow of vm.follows) {
+              if (person.id === follow.friend_id) {
+                person.isFollow = true;
+                break;
+              }
+            }
+            return person;
+          })
+          console.log('last list: ', vm.people)
         })
     }
 
@@ -52,8 +71,52 @@
     }
 
     vm.follow = function(person) {
+      const postObj = {user_id: vm.user.id, friend_id: person.id};
+      return dataService.follow(postObj)
+        .then(function(response) {
+          console.log(response);
+          vm.follows.push(response.data);
+          person.isFollow = true;
+          console.log(vm.follows);
+        })
+    }
+
+    vm.getFollows = function(user) {
+      return dataService.getFollows(user)
+        .then(function(response) {
+          console.log(response.data);
+          vm.follows = response.data;
+        })
+    }
+
+    vm.unfollow = function(person) {
       console.log('click')
-      console.log(person);
+      const followObj = {user_id: vm.user.id, friend_id: person.id};
+      const followId = vm.findFollowId(followObj);
+      if (followId) {
+        return dataService.unfollow(followId)
+        .then(function(response) {
+          console.log(response);
+          const followIndex = vm.findFollowIndex(person, vm.follows);
+          vm.follows.splice(followIndex, 1);
+          person.isFollow = false;
+          console.log(vm.follows)
+        })
+      }
+    }
+
+    vm.findFollowId = function(obj) {
+      for (const follow of vm.follows) {
+        if (obj.user_id === follow.user_id && obj.friend_id === follow.friend_id) {
+          return follow.id
+        }
+      }
+    }
+
+    vm.findFollowIndex = function(person, arr) {
+      for (const index in arr) {
+        if (arr[index].friend_id === person.id) return index;
+      }
     }
 
 

@@ -85,6 +85,27 @@
           })
       }
 
+      this.follow = function(obj) {
+        return $http.post(`/follows`, obj)
+          .then(function(response) {
+            return response;
+          })
+      }
+
+      this.getFollows = function(obj) {
+        return $http.get(`/users/${obj.id}/follows`)
+          .then(function(response) {
+            return response;
+          })
+      }
+
+      this.unfollow = function(id) {
+        return $http.delete(`/follows/${id}`)
+          .then(function(response) {
+            return response;
+          })
+      }
+
 
     }
 }());
