@@ -5,12 +5,13 @@
     <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
   </div>
   <div class="pt4">
-    <a class="lightest-blue">People</a>
+    <a ui-sref="people" class="lightest-blue">People</a>
   </div>
   <div class="pt3">
     <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
   </div>
 </div>
+<!-- <sidebar></sidebar> -->
 
 <div class="content">
 <div class="container mt3 mb4">

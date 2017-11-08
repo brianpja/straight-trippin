@@ -8,8 +8,8 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$stateParams']
-  function controller($state, $http, dataService, loginService, $stateParams) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$stateParams', 'birthdayService']
+  function controller($state, $http, dataService, loginService, $stateParams, birthdayService) {
     const vm = this;
 
     vm.user = loginService.user;
@@ -21,7 +21,7 @@
 
       vm.getProfile(idObj)
         .then(function() {
-          vm.profile.age = vm.calculateAge(vm.profile.birthdate)
+          vm.profile.age = birthdayService.calculateAge(vm.profile.birthdate)
           console.log(vm.profile)
         })
 
@@ -54,30 +54,7 @@
         })
     }
 
-    vm.calculateAge = function(date) {
-      let now = new Date();
-      now = now.toISOString();
 
-      const birthYear = parseInt(date.slice(0, 4));
-      const birthMonth = parseInt(date.slice(5, 7));
-      const birthDay = parseInt(date.slice(8, 10));
-
-      const nowYear = parseInt(now.slice(0, 4));
-      const nowMonth = parseInt(now.slice(5, 7));
-      const nowDay = parseInt(now.slice(8, 10));
-
-      let age = nowYear - birthYear;
-
-      if (birthMonth > nowMonth) {
-        age--;
-      }
-
-      if (birthMonth === nowMonth && birthDay > nowDay) {
-        age--;
-      }
-
-      return age;
-    }
 
     vm.toggleComments = function(post) {
       post.showComments = !post.showComments;

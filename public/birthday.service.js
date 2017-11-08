@@ -51,6 +51,31 @@
       user.year = $filter('date')(user.birthdate, 'yyyy')
     }
 
+    this.calculateAge = function(date) {
+      let now = new Date();
+      now = now.toISOString();
+
+      const birthYear = parseInt(date.slice(0, 4));
+      const birthMonth = parseInt(date.slice(5, 7));
+      const birthDay = parseInt(date.slice(8, 10));
+
+      const nowYear = parseInt(now.slice(0, 4));
+      const nowMonth = parseInt(now.slice(5, 7));
+      const nowDay = parseInt(now.slice(8, 10));
+
+      let age = nowYear - birthYear;
+
+      if (birthMonth > nowMonth) {
+        age--;
+      }
+
+      if (birthMonth === nowMonth && birthDay > nowDay) {
+        age--;
+      }
+
+      return age;
+    }
+
 
 
   }

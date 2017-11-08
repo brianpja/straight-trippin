@@ -1,0 +1,25 @@
+
+<div class="sidebar f4 bg-mid-gray lightest-blue">
+  <div class="pt4">
+    <a ui-sref="profile({id: $ctrl.user.id})"><img class="br2 small-image" src="{{$ctrl.user.img}}"></a>
+    <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
+  </div>
+  <div class="pt4">
+    <a ui-sref="home" class="lightest-blue">Home</a>
+  </div>
+  <div class="pt3">
+    <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
+  </div>
+</div>
+<!-- <sidebar></sidebar> -->
+
+<div class="content">
+<div class="container">
+  <h1>People</h1>
+  <div ng-repeat="person in $ctrl.people">
+    <img class="br2 small-image" src="{{person.img}}">
+    <span ng-if="person.id === $ctrl.user.id"> You</span>
+    <span ng-if="person.id !== $ctrl.user.id"> {{person.first_name}} {{person.last_name}}</span>
+  </div>
+</div>
+</div>

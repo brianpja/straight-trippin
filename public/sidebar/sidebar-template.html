@@ -1,0 +1,12 @@
+<div class="sidebar f4 bg-mid-gray lightest-blue">
+  <div class="pt4">
+    <a ui-sref="profile({id: $ctrl.user.id})"><img class="br2 small-image" src="{{$ctrl.user.img}}"></a>
+    <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
+  </div>
+  <div class="pt4">
+    <a ui-sref="people" class="lightest-blue">People</a>
+  </div>
+  <div class="pt3">
+    <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
+  </div>
+</div>

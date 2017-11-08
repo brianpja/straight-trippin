@@ -7,6 +7,13 @@
     service.$inject = ['$http']
     function service($http) {
 
+      this.getAllUsers = function() {
+        return $http.get(`/users`)
+          .then(function(response) {
+            return response;
+          })
+      }
+
       this.getUser = function(obj) {
         return $http.get(`/users/${obj.id}`)
           .then(function(response) {

@@ -43,6 +43,12 @@
         component: 'write',
         parent: 'root'
       })
+      .state({
+        name: 'people',
+        url: '/people/',
+        component: 'people',
+        parent: 'root'
+      })
 
   }
 }());
