@@ -26,6 +26,7 @@
         <label for="email">Email address: </label>
         <input class="br2" type="text" id="email" ng-model="$ctrl.user.email">
       </div>
+      <div ng-if="$ctrl.showEditError" class="red f6 ml4">{{$ctrl.editError}}</div>
 
       <div class="ml1 mv3">
         <label for="password">New Password: </label>
@@ -68,7 +69,9 @@
       </textarea>
       </div>
 
-      <div class="mt4 ml4">
+
+
+      <div class="mt3 mb4 ml4">
         <button class="br2" type="submit" ng-click="$ctrl.updateUser($ctrl.user)">Save Changes</button>
       </div>
 

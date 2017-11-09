@@ -38,7 +38,12 @@ app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')})
 })
 app.use((req, res) => {
-  res.send('error')
+  res.sendStatus(404);
+})
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(err.output.statusCode).send(err);
 })
 
 

@@ -32,11 +32,27 @@ router.get('/users/:id', (req, res, next) => {
 })
 
 router.post('/users', (req, res, next) => {
+  console.log('req.body: ', req.body)
 
   const userData = req.body;
-  createBirthdate(userData);
 
-  bcrypt.hash(userData.password, 12)
+  if (userData.year === 'Year' || userData.month === 'Month' || userData.day === 'Day') {
+    throw boom.create(400, 'Please enter a birthday')
+  }
+
+  checkIfEmailExists(userData.email)
+    .then(function(result) {
+      console.log('second result: ', result)
+      if (result) {
+        throw boom.create(400, 'Email already exists')
+      }
+
+    })
+    .then(function() {
+      createBirthdate(userData);
+      return bcrypt.hash(userData.password, 12)
+    })
+
     .then(function(hashed_password) {
       delete userData.password;
       userData.hashed_password = hashed_password;
@@ -62,17 +78,17 @@ router.post('/users', (req, res, next) => {
           delete result.hashed_password;
           res.send(result)
         })
-        .catch((err) => {
-          next(err);
-        })
+    })
+    .catch((err) => {
+      next(err);
     })
 })
 
 router.patch('/users/:id', (req, res, next) => {
-  console.log(req.body);
 
   const userData = req.body;
   createBirthdate(userData);
+  console.log('userData: ', userData)
 
   const promises = [new Promise((resolve, reject) => {
     if (userData.password) {
@@ -81,7 +97,6 @@ router.patch('/users/:id', (req, res, next) => {
 
           delete userData.password;
           userData.hashed_password = hashed_password;
-          console.log('post hash userData: ', userData)
           resolve(hashed_password);
         })
     } else {
@@ -89,9 +104,18 @@ router.patch('/users/:id', (req, res, next) => {
     }
   })]
 
-  Promise.all(promises)
+  checkIfEmailExists(userData.email, userData.id)
     .then(function(result) {
-      console.log('result number 1: ', result)
+      console.log('second result: ', result)
+      if (result) {
+        throw boom.create(400, 'Email already exists')
+      }
+    })
+    .then(function() {
+      return Promise.all(promises)
+    })
+
+    .then(function(result) {
       return knex('users')
         .where('id', req.params.id)
         .update({
@@ -134,6 +158,22 @@ function createBirthdate(obj) {
   delete obj.day;
   delete obj.month;
   delete obj.year;
+}
+
+function checkIfEmailExists(email, id = 0) {
+  const sqlString = `SELECT * FROM users WHERE email = '${email}'`
+
+  return knex.raw(sqlString)
+    .then(function(result) {
+      console.log('result: ', result)
+      if (result.rows.length && result.rows[0].id !== id) {
+        console.log('true');
+        return true;
+      } else {
+        console.log('false')
+        return false;
+      }
+    })
 }
 
 

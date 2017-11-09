@@ -8,8 +8,8 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService', 'birthdayService']
-  function controller($state, $http, dataService, loginService, birthdayService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', 'birthdayService', '$timeout']
+  function controller($state, $http, dataService, loginService, birthdayService, $timeout) {
     const vm = this;
 
     vm.user = {};
@@ -27,6 +27,7 @@
       vm.months = birthdayService.months;
       vm.years = birthdayService.years;
       vm.showInput = false;
+      vm.showEditError = false;
     }
 
     vm.getUser = function(user) {
@@ -40,6 +41,14 @@
       return dataService.updateUser(user)
         .then(function(response) {
           $state.go('home');
+        })
+        .catch((err) => {
+          console.log(err.data)
+          vm.editError = err.data.output.payload.message;
+          vm.showEditError = true;
+          $timeout(function() {
+            vm.showEditError = false;
+          }, 5000)
         })
     }
 

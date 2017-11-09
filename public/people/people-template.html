@@ -31,7 +31,7 @@
     <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
     <span ng-if="person.id !== $ctrl.user.id">
       <a class="black b" ui-sref="profile({id: person.id})">{{person.first_name}} {{person.last_name}}</a>, {{person.age}}<span ng-if="person.location.length && person.status === 'blank'">, {{person.location}}</span><span ng-if="!person.location.length && person.status !== 'blank'">, {{person.status}}'</span><span ng-if="person.location.length && person.status !=='blank'">, {{person.status}}' in {{person.location}}</span>
-      <span ng-if="!person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
+      <span ng-if="!person.isFollow" class="f6 moon-gray"> <a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
       <span ng-if="person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.unfollow(person)">unfollow</a></span>
     </span>
   </div>
@@ -41,7 +41,7 @@
     <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
     <span ng-if="person.id !== $ctrl.user.id">
       <a class="black b" ui-sref="profile({id: person.id})">{{person.first_name}} {{person.last_name}}</a>, {{person.age}}<span ng-if="person.location.length && person.status === 'blank'">, {{person.location}}</span><span ng-if="!person.location.length && person.status !== 'blank'">, {{person.status}}'</span><span ng-if="person.location.length && person.status !=='blank'">, {{person.status}}' in {{person.location}}</span>
-      <span ng-if="!person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
+      <span ng-if="!person.isFollow" class="f6 moon-gray"> <a class="light-anchor" ng-click="$ctrl.follow(person)">follow this person?</a></span>
       <span ng-if="person.isFollow" class="f6 moon-gray"><a class="light-anchor" ng-click="$ctrl.unfollow(person)">unfollow</a></span>
     </span>
   </div>

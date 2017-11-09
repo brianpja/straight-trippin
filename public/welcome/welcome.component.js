@@ -11,8 +11,8 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService', 'birthdayService']
-  function controller($state, $http, dataService, loginService, birthdayService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', 'birthdayService', '$timeout']
+  function controller($state, $http, dataService, loginService, birthdayService, $timeout) {
     const vm = this;
 
 
@@ -23,7 +23,8 @@
       vm.days = birthdayService.days;
       vm.months = birthdayService.months;
       vm.years = birthdayService.years;
-
+      vm.showLoginError = false;
+      vm.showSignupError = false;
     }
 
 
@@ -38,6 +39,15 @@
             $state.go('edit');
           }
         })
+        .catch(function(err) {
+          console.log(err.data)
+
+          vm.signupError = err.data.output.payload.message;
+          vm.showSignupError = true;
+          $timeout(() => {
+            vm.showSignupError = false;
+          }, 3000)
+        })
     }
 
     vm.login = function(user) {
@@ -48,7 +58,12 @@
           $state.go('home');
         })
         .catch(function(err){
-          console.log(err)
+          console.log(err.data)
+          vm.loginError = err.data.output.payload.message;
+          vm.showLoginError = true;
+          $timeout(() => {
+            vm.showLoginError = false;
+          }, 3000)
         })
     }
 

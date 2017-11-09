@@ -25,7 +25,7 @@ router.post(`/token`, (req, res, next) => {
     .first()
     .then(function(row) {
       if(!row) {
-        throw boom.create(400, 'Bad email or password')
+        throw boom.create(400, 'Incorrect email or password')
       }
       user = row;
       return bcrypt.compare(login.password, user.hashed_password)
@@ -49,7 +49,7 @@ router.post(`/token`, (req, res, next) => {
     })
 
     .catch(bcrypt.MISMATCH_ERROR, function() {
-      throw boom.create(400, 'Bad email or password')
+      throw boom.create(400, 'Incorrect email or password')
     })
 
     .catch((err) => {
