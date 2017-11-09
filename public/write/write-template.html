@@ -29,8 +29,12 @@
       <input class="br2" type="file" fileupload="$ctrl.uploadFile">
     </div>
 
-    <div ng-if="$ctrl.newPost.images.length">
+    <!-- <div ng-if="$ctrl.newPost.images.length">
       <img class="br2" src="{{$ctrl.newPost.images[0]}}">
+    </div> -->
+
+    <div class="tc" ng-if="$ctrl.newPost.images.length" ng-repeat="image in $ctrl.newPost.images | orderBy: $index : true">
+      <img class="br2" src="{{image}}">
     </div>
 
 
