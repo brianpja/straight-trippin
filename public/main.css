@@ -2,6 +2,10 @@ ui-view {
   width: 100%;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .window {
   display: flex;
 }
@@ -151,4 +155,8 @@ a:hover {
 
 .light-anchor:hover {
   color: #555555;
+}
+
+.people-search {
+  width: 150px;
 }

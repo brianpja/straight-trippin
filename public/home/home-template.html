@@ -16,9 +16,18 @@
 <div class="content">
 <div class="container mt3 mb4">
   <div class="f3 ml4">Home Feed</div>
-  <button class="ml4" ui-sref="write">Add new post</button>
+  <div class="ml3 mv2">
+    <input class="br2" placeholder="Search posts" ng-model="$ctrl.search[$ctrl.searchBy]">
+    <span>by: </span>
+    <select ng-model="$ctrl.searchBy">
+      <option value="full_name">Person</option>
+      <option value="post_location">Place</option>
+      <option value="types">Type of travel</option>
+    </select>
+    <button class="ml5" ui-sref="write">Write new post</button>
+  </div>
 
-  <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true">
+  <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true | filter: $ctrl.search">
     <div class="pa2 ph3-ns pb3-ns">
       <div class="dt w-100 mt1">
         <div class="post-head">

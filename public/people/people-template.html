@@ -17,7 +17,16 @@
 <div class="container">
 
   <div class="mt5 mb4 mr3 tc f3"><a class="b black mh3" ng-click="$ctrl.showFollow = false">Everyone</a> | <a class="b black mh3" ng-click="$ctrl.showFollow = true">People You Follow</a></div>
-  <div ng-if="!$ctrl.showFollow" ng-repeat="person in $ctrl.people">
+  <div class="tc mr4 mb3">
+    <input ng-model="$ctrl.search[$ctrl.searchBy]" class="br2" placeholder="Search people">
+    <span>by: </span>
+    <select ng-model="$ctrl.searchBy">
+      <option value="full_name">Name</option>
+      <option value="location">Location</option>
+    </select>
+  </div>
+  <div ng-if="!$ctrl.showFollow" ng-repeat="person in $ctrl.people | filter: $ctrl.search">
+
     <a ui-sref="profile({id: person.id})"><img class="br2 small-image" src="{{person.img}}"></a>
     <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
     <span ng-if="person.id !== $ctrl.user.id">
@@ -27,7 +36,7 @@
     </span>
   </div>
 
-  <div ng-if="$ctrl.showFollow" ng-repeat="person in $ctrl.people | filter: {isFollow: true}">
+  <div ng-if="$ctrl.showFollow" ng-repeat="person in $ctrl.people | filter: {isFollow: true} | filter: $ctrl.search">
     <a ui-sref="profile({id: person.id})"><img class="br2 small-image" src="{{person.img}}"></a>
     <span ng-if="person.id === $ctrl.user.id"> <a class="black" ui-sref="profile({id: person.id})">You</a></span>
     <span ng-if="person.id !== $ctrl.user.id">

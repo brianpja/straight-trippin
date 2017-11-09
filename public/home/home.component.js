@@ -13,6 +13,7 @@
     const vm = this;
     vm.user = {};
     vm.feed = [];
+    vm.searchBy = 'full_name'
 
     vm.$onInit = function() {
       loginService.isLoggedIn()
@@ -27,6 +28,14 @@
         vm.getFeed()
           .then(function() {
             console.log(vm.feed);
+            vm.feed = vm.feed.map(function(post) {
+              post.full_name = `${post.first_name} ${post.last_name}`
+              post.types = '';
+              for (const style of post.styles) {
+                post.types += style.name + ' ';
+              }
+              return post;
+            })
           })
 
     }

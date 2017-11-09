@@ -16,16 +16,11 @@
     vm.people = [];
     vm.follows = [];
     vm.showFollow = false;
+    vm.searchBy = 'full_name'
 
     vm.$onInit = function() {
 
       vm.getUsers()
-        .then(function() {
-          vm.people = vm.people.map(function(obj) {
-            obj.age = birthdayService.calculateAge(obj.birthdate)
-            return obj;
-          })
-        })
         .then(function() {
           return vm.getUser(loginService.user)
         })
@@ -42,6 +37,9 @@
                 break;
               }
             }
+            person.age = birthdayService.calculateAge(person.birthdate);
+            person.full_name = `${person.first_name} ${person.last_name}`
+
             return person;
           })
           console.log('last list: ', vm.people)
