@@ -79,6 +79,7 @@
           post.comments.push(retObj);
           post.showComments = true;
           delete post.commentInput;
+          console.log(post)
         })
     }
 

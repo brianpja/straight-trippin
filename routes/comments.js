@@ -12,6 +12,7 @@ router.post('/comments', (req, res, next) => {
     .insert(req.body, '*')
     .then(function(comment) {
       comment = comment[0];
+      comment.comment_id = comment.id;
       res.send(comment)
     })
 
