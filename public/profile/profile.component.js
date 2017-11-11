@@ -126,5 +126,41 @@
       }
     }
 
+    vm.imageRight = function(post) {
+      if (post.imageCounter === post.images.length) {
+        post.imageCounter = 1;
+      } else {
+        post.imageCounter++;
+      }
+
+      $(`img[data-id="${post.post_id}"].post-image`).fadeOut('fast', function() {
+          if (post.imagePointer === post.images.length - 1) {
+            post.imagePointer = 0;
+          } else {
+            post.imagePointer++;
+          }
+          this.src = post.images[post.imagePointer].url
+          $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast')
+        })
+    }
+
+    vm.imageLeft = function(post) {
+      if (post.imageCounter === 1) {
+        post.imageCounter = post.images.length;
+      } else {
+        post.imageCounter--;
+      }
+
+      $(`img[data-id="${post.post_id}"].post-image`).fadeOut('fast', function() {
+        if (post.imagePointer === 0) {
+          post.imagePointer = post.images.length - 1;
+        } else {
+          post.imagePointer--;
+        }
+        this.src = post.images[post.imagePointer].url;
+        $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast');
+      })
+    }
+
   }
 }());

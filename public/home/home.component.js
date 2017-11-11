@@ -8,14 +8,16 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService']
-  function controller($state, $http, dataService, loginService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$timeout']
+
+  function controller($state, $http, dataService, loginService, $timeout) {
     const vm = this;
     vm.user = {};
     vm.feed = [];
     vm.searchBy = 'full_name'
 
     vm.$onInit = function() {
+
       loginService.isLoggedIn()
         .then(function(response) {
           if (!response) {
@@ -23,22 +25,24 @@
           }
         })
 
-        vm.userData = loginService.user;
-        vm.getUser(vm.userData);
-        vm.getFeed()
-          .then(function() {
-            console.log(vm.feed);
-            vm.feed = vm.feed.map(function(post) {
-              post.full_name = `${post.first_name} ${post.last_name}`
-              post.types = '';
-              for (const style of post.styles) {
-                post.types += style.name + ' ';
-              }
-              return post;
-            })
+      vm.userData = loginService.user;
+      vm.getUser(vm.userData);
+      vm.getFeed()
+        .then(function() {
+          console.log(vm.feed);
+          vm.feed = vm.feed.map(function(post) {
+            post.full_name = `${post.first_name} ${post.last_name}`
+            post.types = '';
+            for (const style of post.styles) {
+              post.types += style.name + ' ';
+            }
+            return post;
           })
+        })
 
     }
+
+
 
     vm.getUser = function(user) {
       return dataService.getUser(user)
@@ -133,6 +137,42 @@
       for (const index in arr) {
         if (arr[index].comment_id === item.id) return index;
       }
+    }
+
+    vm.imageRight = function(post) {
+      if (post.imageCounter === post.images.length) {
+        post.imageCounter = 1;
+      } else {
+        post.imageCounter++;
+      }
+
+      $(`img[data-id="${post.post_id}"].post-image`).fadeOut('fast', function() {
+          if (post.imagePointer === post.images.length - 1) {
+            post.imagePointer = 0;
+          } else {
+            post.imagePointer++;
+          }
+          this.src = post.images[post.imagePointer].url
+          $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast')
+        })
+    }
+
+    vm.imageLeft = function(post) {
+      if (post.imageCounter === 1) {
+        post.imageCounter = post.images.length;
+      } else {
+        post.imageCounter--;
+      }
+
+      $(`img[data-id="${post.post_id}"].post-image`).fadeOut('fast', function() {
+        if (post.imagePointer === 0) {
+          post.imagePointer = post.images.length - 1;
+        } else {
+          post.imagePointer--;
+        }
+        this.src = post.images[post.imagePointer].url;
+        $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast');
+      })
     }
 
   }

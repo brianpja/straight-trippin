@@ -62,8 +62,20 @@
         <p class="f6 lh-copy mt2">
           {{post.content}}
         </p>
-        <div class="mb3" ng-if="post.images.length">
+        <!-- <div class="mb3" ng-if="post.images.length">
           <img class="br2 center" src="{{post.images[0].url}}">
+        </div> -->
+
+        <div class="mb3 tc image-container" ng-if="post.images.length">
+          <div><img class="br2 post-image" data-id={{post.post_id}} ng-src="{{post.images[post.imagePointer].url}}"></div>
+          <div ng-if="post.images.length > 1" class="carousel-tools">
+            <div class="blank-counter white"></div>
+            <div class="image-btn">
+              <button class="gray" ng-click="$ctrl.imageLeft(post)"><</button>
+              <button class="gray" ng-click="$ctrl.imageRight(post)">></button>
+            </div>
+            <div class="carousel-counter f7 moon-gray mr2">({{post.imageCounter}} of {{post.images.length}})</div>
+          </div>
         </div>
         <div class="f6 mv3 mid-gray" ng-if="post.comments.length">
           <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"

@@ -37,7 +37,7 @@ button:hover {
   position: fixed;
   height: 100%;
   width: 150px;
-  padding-left: 20px;
+  padding-right: 10px;
 }
 
 .content {
@@ -46,7 +46,7 @@ button:hover {
 
 .title {
   display: inline-block;
-  min-width: 400px;
+  min-width: 500px;
   margin-left: 10px;
   margin-right: 50px;
 }
@@ -59,7 +59,7 @@ button:hover {
 
 .empty {
   width: 200px;
-  min-width: 0;
+  /*min-width: 0;*/
 }
 
 .top {
@@ -159,4 +159,39 @@ a:hover {
 
 .people-search {
   width: 150px;
+}
+
+.post-image {
+  max-width: 550px;
+  max-height: 342px;
+  object-fit: contain;
+  border-radius: .25rem;
+}
+
+.image-container {
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.carousel-tools {
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 550px;
+  /*flex-direction: column;*/
+}
+
+.image-btn {
+  align-self: center;
+}
+
+.carousel-counter {
+  align-self: flex-start;
+}
+
+.blank-counter {
+  width: 52px;
 }

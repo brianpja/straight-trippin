@@ -68,6 +68,8 @@ router.get('/posts', (req, res, next) => {
           if (!post.styles) {
             post.styles = [];
           }
+          post.imagePointer = 0;
+          post.imageCounter = 1;
           return post
         })
         res.send(posts)
@@ -139,6 +141,8 @@ router.get('/users/:id/posts', (req, res, next) => {
           if (!post.styles) {
             post.styles = [];
           }
+          post.imagePointer = 0;
+          post.imageCounter = 1;
           return post
         })
         res.send(posts)

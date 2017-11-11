@@ -25,7 +25,7 @@
       <div><textarea id="content" ng-model="$ctrl.newPost.content" class="br2 b--light-silver" type="text" rows="5" cols="65" required></textarea></div>
     </div>
 
-    <div class="mv3">Add a photo:
+    <div class="mv3">Add some photos:
       <input class="br2" type="file" fileupload="$ctrl.uploadFile">
     </div>
 
@@ -34,7 +34,7 @@
     </div> -->
 
     <div class="tc" ng-if="$ctrl.newPost.images.length" ng-repeat="image in $ctrl.newPost.images | orderBy: $index : true">
-      <img class="br2" src="{{image}}">
+      <img class="br2 post-image" src="{{image}}">
     </div>
 
 
