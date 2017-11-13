@@ -3,19 +3,23 @@
 
   <div class="f3 mb2">Login</div>
   <form ng-submit="$ctrl.login($ctrl.userLogin)">
-    <div><input class="br2 mv1" type="email" placeholder="Email" ng-model="$ctrl.userLogin.email" required></input></div>
-    <div><input class="br2 mv1" type="password" placeholder="Password" ng-model="$ctrl.userLogin.password" required></input></div>
+    <div class="login-field">
+      <input class="br2 mv1 login-input" type="email" placeholder="Email" ng-model="$ctrl.userLogin.email" required></input>
+      <input class="br2 mv1 login-input" type="password" placeholder="Password" ng-model="$ctrl.userLogin.password" required></input>
+    </div>
     <div class="red f6" ng-if="$ctrl.showLoginError">{{$ctrl.loginError}}</div>
-    <div class="tr"><button class="br2 mv1 mr6" type="submit">Go</button></div>
+    <div class="tr"><button class="br2 mv1 mr4" type="submit">Go</button></div>
   </form>
 
   <div class="mv4">or</div>
   <div class="f3 mb2">Create a new account</div>
   <form ng-submit="$ctrl.addUser($ctrl.newUser)">
-    <div><input class="br2 mv1" placeholder="First name" ng-model="$ctrl.newUser.first_name" required></input></div>
-    <div><input class="br2 mv1" placeholder="Last name" ng-model="$ctrl.newUser.last_name" required></input></div>
-    <div><input class="br2 mv1" type="email" placeholder="Email" ng-model="$ctrl.newUser.email" required></input></div>
-    <div><input class="br2 mv1" type="password" placeholder="New password" ng-model="$ctrl.newUser.password" required></input></div>
+    <div class="regis-name">
+      <input class="br2 mv1 login-input" placeholder="First name" ng-model="$ctrl.newUser.first_name" required></input>
+      <input class="br2 mv1 login-input" placeholder="Last name" ng-model="$ctrl.newUser.last_name" required></input>
+    </div>
+    <div><input class="br2 mv1 wide-input" type="email" placeholder="Email" ng-model="$ctrl.newUser.email" required></input></div>
+    <div><input class="br2 mv1 wide-input" type="password" placeholder="New password" ng-model="$ctrl.newUser.password" required></input></div>
 
     <div class="mv2">Birthday:
       <select ng-model="$ctrl.newUser.month" required>

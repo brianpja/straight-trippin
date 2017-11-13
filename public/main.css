@@ -92,7 +92,7 @@ button:hover {
 }
 
 .login-container {
-  width: 300px;
+  width: 400px;
   margin: auto;
   /*text-align: center;*/
 }
@@ -194,4 +194,17 @@ a:hover {
 
 .blank-counter {
   width: 52px;
+}
+
+/*.login-field {
+  display: flex;
+  justify-content: flex-start;
+}*/
+
+.login-input {
+  width: 183px;
+}
+
+.wide-input {
+  width: 382px;
 }
