@@ -6,10 +6,10 @@
     </div>
 
     <div class="sub-header lightest-blue f6 tr pr3">
-      <a class="lightest-blue" ui-sref="home" ng-if="$ctrl.loginService.user.loggedIn">Home</a>
-      <a class="lightest-blue" ui-sref="profile({id: $ctrl.loginService.user.id})" ng-if="$ctrl.loginService.user.loggedIn">Profile</a>
+      <a class="lightest-blue nav-link pa2 br2" ui-sref="home" ng-if="$ctrl.loginService.user.loggedIn">Home</a>
+      <a class="lightest-blue nav-link pa2 br2" ui-sref="profile({id: $ctrl.loginService.user.id})" ng-if="$ctrl.loginService.user.loggedIn">Profile</a>
       <!-- <a class="lightest-blue" ui-sref="edit" ng-if="$ctrl.loginService.user.loggedIn">Edit</a> -->
-      <a class="lightest-blue" ng-click="$ctrl.logout()" ng-if="$ctrl.loginService.user.loggedIn">Logout</a>
+      <a class="lightest-blue nav-link pa2 br2" ng-click="$ctrl.logout()" ng-if="$ctrl.loginService.user.loggedIn">Logout</a>
       <!-- <a class="lightest-blue" ui-sref="welcome" ng-if="!$ctrl.loginService.user.loggedIn">Welcome</a> -->
     </div>
   </div>

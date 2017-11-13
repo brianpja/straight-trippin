@@ -1,20 +1,24 @@
 <div class="sidebar tc bg-mid-gray lightest-blue">
-  <div class="pt4 f4">
-    <a ui-sref="profile({id: $ctrl.user.id})"><img class="br2 small-image" src="{{$ctrl.user.img}}"></a>
-    <a class="lightest-blue" ui-sref="profile({id: $ctrl.user.id})">{{$ctrl.user.first_name}}</a>
+<div class="name-container">
+  <div class="pt4 f4 side-name">
+    <a ui-sref="profile({id: $ctrl.user.id})" class="lightest-blue side-link pa2 br2">
+      <img class="br2 small-image" src="{{$ctrl.user.img}}">
+      {{$ctrl.user.first_name}}
+    </a>
   </div>
+</div>
   <div class="pt4 f5">
-    <a ui-sref="people" class="lightest-blue">People</a>
+    <a ui-sref="people" class="lightest-blue side-link br2 pa2">People</a>
   </div>
   <div class="pt3 f5">
-    <a ng-click="$ctrl.logout()" class="lightest-blue">Logout</a>
+    <a ng-click="$ctrl.logout()" class="lightest-blue side-link br2 pa2">Logout</a>
   </div>
 </div>
 <!-- <sidebar></sidebar> -->
 
 <div class="content">
   <div class="container mt3 mb4">
-    <div class="f3 ml4">Home Feed</div>
+    <div class="f3 ml3 b">Home Feed</div>
     <div class="ml3 mv2">
       <input class="br2" placeholder="Search posts" ng-model="$ctrl.search[$ctrl.searchBy]">
       <span>by: </span>
