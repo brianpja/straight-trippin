@@ -19,7 +19,7 @@
       <input class="br2 mv1 login-input" placeholder="Last name" ng-model="$ctrl.newUser.last_name" required></input>
     </div>
     <div><input class="br2 mv1 wide-input" type="email" placeholder="Email" ng-model="$ctrl.newUser.email" required></input></div>
-    <div><input class="br2 mv1 wide-input" type="password" placeholder="New password" ng-model="$ctrl.newUser.password" required></input></div>
+    <div><input class="br2 mv1 wide-input" type="password" placeholder="Password" ng-model="$ctrl.newUser.password" required></input></div>
 
     <div class="mv2">Birthday:
       <select ng-model="$ctrl.newUser.month" required>
@@ -38,7 +38,7 @@
 
     <div class="red f6" ng-if="$ctrl.showSignupError">{{$ctrl.signupError}}</div>
 
-    <div class="mv3"><button class="br2" type="submit">Create Account</button></div>
+    <div class="mv3 tr"><button class="br2 mr3" type="submit">Create Account</button></div>
   </form>
 
 </div>

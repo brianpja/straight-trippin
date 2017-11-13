@@ -124,6 +124,7 @@
           const postIndex = vm.findPostIndex(vm.feed, response.data);
           const commentIndex = vm.findCommentIndex(vm.feed[postIndex].comments, response.data);
           vm.feed[postIndex].comments.splice(commentIndex, 1);
+          console.log(vm.feed);
         })
     }
 

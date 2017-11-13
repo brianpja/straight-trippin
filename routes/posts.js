@@ -70,6 +70,7 @@ router.get('/posts', (req, res, next) => {
           }
           post.imagePointer = 0;
           post.imageCounter = 1;
+          post.showDelete = false;
           return post
         })
         res.send(posts)
@@ -143,6 +144,7 @@ router.get('/users/:id/posts', (req, res, next) => {
           }
           post.imagePointer = 0;
           post.imageCounter = 1;
+          post.showDelete = false;
           return post
         })
         res.send(posts)

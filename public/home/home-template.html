@@ -30,7 +30,8 @@
       <button class="ml5" ui-sref="write">Write new post</button>
     </div>
 
-    <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true | filter: $ctrl.search">
+    <div class="ba br2 b--light-gray ma2" ng-repeat="post in $ctrl.feed | orderBy: 'created_at' : true | filter: $ctrl.search"
+      ng-mouseover="$ctrl.showDelete(post)" ng-mouseleave="$ctrl.noDelete(post)">
       <div class="pa2 ph3-ns pb3-ns">
         <div class="dt w-100 mt1">
           <div class="post-head">
@@ -47,10 +48,10 @@
 
             </div>
             <div class="b tr dib post-style">
-              <div class="mb2">
-                <span ng-if="$ctrl.user.id === post.user_id" class="f6 normal moon-gray">
-                <a class="light-anchor" ng-click="$ctrl.deletePost(post)">delete post</a>
-              </span>
+              <div class="mb1">
+                <span ng-if="$ctrl.user.id === post.user_id && post.showDelete" class="f6 normal moon-gray">
+                  <a class="light-anchor" ng-click="$ctrl.deletePost(post)">delete post</a>
+                </span>
               </div>
 
               <span ng-pluralize count="post.styles.length" when="{'0': '',
@@ -88,7 +89,7 @@
           </a>
         </div>
 
-        <div class="f7 mv3 " ng-if="post.showComments">
+        <div class="f7 mv3 " ng-if="post.comments.length && post.showComments">
           <a class="b gray" ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
             when="{'1': 'hide {{post.comments.length}} comment',
                   'other': 'hide {{post.comments.length}} comments'}">

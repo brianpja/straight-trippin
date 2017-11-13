@@ -82,8 +82,10 @@ button:hover {
 }
 
 .profile-container {
-  width: 900px;
+  /*width: 900px;*/
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .write-container {
@@ -181,7 +183,6 @@ a:hover {
   display: flex;
   justify-content: space-between;
   width: 550px;
-  /*flex-direction: column;*/
 }
 
 .image-btn {
@@ -223,4 +224,17 @@ a:hover {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.profile-left {
+  height: 100%;
+  display: inline-block;
+}
+
+.left-content {
+  width: 350px;
+}
+
+.profile-content {
+  display: inline-block;
 }
