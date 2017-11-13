@@ -81,14 +81,19 @@
           </div>
         </div>
 
-
-
-
-        <div class="f6 mv3 mid-gray" ng-if="post.comments.length">
-          <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length" when="{'0': 'No comments yet',
-                  '1': '{{post.comments.length}} comment',
-                  'other': '{{post.comments.length}} comments'}"></a>
+        <div class="f7 mv3 " ng-if="post.comments.length && !post.showComments">
+          <a class="b gray" ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
+            when="{'1': 'view {{post.comments.length}} comment',
+                  'other': 'view {{post.comments.length}} comments'}"></a>
         </div>
+
+        <div class="f7 mv3 " ng-if="post.showComments">
+          <a class="b gray" ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
+            when="{'1': 'hide {{post.comments.length}} comment',
+                  'other': 'hide {{post.comments.length}} comments'}"></a>
+        </div>
+
+
         <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
           <div ng-mouseover="$ctrl.showDelete(comment)" ng-mouseleave="$ctrl.noDelete(comment)">
             <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
