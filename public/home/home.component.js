@@ -8,13 +8,14 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$timeout']
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$timeout', 'preloader']
 
-  function controller($state, $http, dataService, loginService, $timeout) {
+  function controller($state, $http, dataService, loginService, $timeout, preloader) {
     const vm = this;
     vm.user = {};
     vm.feed = [];
     vm.searchBy = 'full_name'
+    vm.images = [];
 
     vm.$onInit = function() {
 
@@ -38,6 +39,15 @@
             }
             return post;
           })
+
+          for (const post of vm.feed) {
+            for (const image of post.images) {
+              vm.images.push(image.url);
+            }
+          }
+        })
+        .then(function() {
+          preloader.preloadImages(vm.images);
         })
 
     }
@@ -153,7 +163,9 @@
           } else {
             post.imagePointer++;
           }
+          console.log(this)
           this.src = post.images[post.imagePointer].url
+
           $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast')
         })
     }
