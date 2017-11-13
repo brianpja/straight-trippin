@@ -165,13 +165,13 @@ a:hover {
 
 .post-image {
   max-width: 550px;
-  max-height: 342px;
+  max-height: 462px;
   object-fit: contain;
   border-radius: .25rem;
 }
 
 .image-container {
-  height: 380px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -190,6 +190,7 @@ a:hover {
 }
 
 .carousel-counter {
+  width: 42px;
   align-self: flex-start;
 }
 
