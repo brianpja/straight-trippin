@@ -14,9 +14,6 @@
     <div class="mt3" ng-if="$ctrl.profile.id === $ctrl.user.id">
       <a ui-sref="edit" class="f6 mid-gray">Edit your profile</a>
     </div>
-    <!-- <div class="mt3" ng-if="$ctrl.profile.id !== $ctrl.user.id">
-      <a class="f6 mid-gray">Follow this person</a>
-    </div> -->
 
   </div>
 
@@ -62,9 +59,7 @@
         <p class="f6 lh-copy mt2">
           {{post.content}}
         </p>
-        <!-- <div class="mb3" ng-if="post.images.length">
-          <img class="br2 center" src="{{post.images[0].url}}">
-        </div> -->
+
 
         <div class="mb3 tc image-container" ng-if="post.images.length">
           <div><img class="br2 post-image" data-id={{post.post_id}} ng-src="{{post.images[post.imagePointer].url}}"></div>
@@ -77,12 +72,22 @@
             <div class="carousel-counter f7 moon-gray mr2">({{post.imageCounter}} of {{post.images.length}})</div>
           </div>
         </div>
-        <div class="f6 mv3 mid-gray" ng-if="post.comments.length">
-          <a ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
-            when="{'0': 'No comments yet',
-                    '1': '{{post.comments.length}} comment',
-                    'other': '{{post.comments.length}} comments'}"></a>
+
+        <div class="f7 mv3 " ng-if="post.comments.length && !post.showComments">
+          <a class="b gray" ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
+            when="{'1': 'view {{post.comments.length}} comment',
+                  'other': 'view {{post.comments.length}} comments'}">
+          </a>
         </div>
+
+        <div class="f7 mv3 " ng-if="post.showComments">
+          <a class="b gray" ng-click="$ctrl.toggleComments(post)" ng-pluralize count="post.comments.length"
+            when="{'1': 'hide {{post.comments.length}} comment',
+                  'other': 'hide {{post.comments.length}} comments'}">
+          </a>
+        </div>
+
+
         <div class="f6 mb2" ng-if="post.showComments" ng-repeat="comment in post.comments">
           <div ng-mouseover="$ctrl.showDelete(comment)" ng-mouseleave="$ctrl.noDelete(comment)">
             <a ui-sref="profile({id: comment.user_id})" class="b black">{{comment.first_name}} {{comment.last_name}}</a> {{comment.content}}
@@ -91,6 +96,7 @@
             </div>
           </div>
         </div>
+
         <form ng-submit="$ctrl.postComment(post)">
           <input class="f6 br2 mt1 w-40" placeholder="add a comment" ng-model="post.commentInput"></input>
         </form>
