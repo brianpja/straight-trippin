@@ -40,8 +40,6 @@
           }
         })
         .catch(function(err) {
-          console.log(err.data)
-
           vm.signupError = err.data.output.payload.message;
           vm.showSignupError = true;
           $timeout(() => {
@@ -58,7 +56,6 @@
           $state.go('home');
         })
         .catch(function(err){
-          console.log(err.data)
           vm.loginError = err.data.output.payload.message;
           vm.showLoginError = true;
           $timeout(() => {

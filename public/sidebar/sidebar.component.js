@@ -19,7 +19,6 @@
       if (!vm.user.img) {
         vm.getUser(loginService.user);
       }
-      console.log('state', $stateParams)
     }
 
 

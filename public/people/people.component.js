@@ -42,14 +42,12 @@
 
             return person;
           })
-          console.log('last list: ', vm.people)
         })
     }
 
     vm.getUsers = function() {
       return dataService.getAllUsers()
         .then(function(response) {
-          console.log(response);
           vm.people = response.data;
         })
     }
@@ -72,33 +70,27 @@
       const postObj = {user_id: vm.user.id, friend_id: person.id};
       return dataService.follow(postObj)
         .then(function(response) {
-          console.log(response);
           vm.follows.push(response.data);
           person.isFollow = true;
-          console.log(vm.follows);
         })
     }
 
     vm.getFollows = function(user) {
       return dataService.getFollows(user)
         .then(function(response) {
-          console.log(response.data);
           vm.follows = response.data;
         })
     }
 
     vm.unfollow = function(person) {
-      console.log('click')
       const followObj = {user_id: vm.user.id, friend_id: person.id};
       const followId = vm.findFollowId(followObj);
       if (followId) {
         return dataService.unfollow(followId)
         .then(function(response) {
-          console.log(response);
           const followIndex = vm.findFollowIndex(person, vm.follows);
           vm.follows.splice(followIndex, 1);
           person.isFollow = false;
-          console.log(vm.follows)
         })
       }
     }

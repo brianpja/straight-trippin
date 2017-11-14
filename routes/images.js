@@ -27,21 +27,16 @@ cloudinary.config({
 });
 
 router.post('/profile', upload.single('file'), (req, res, next) => {
-  console.log('routing works')
-  console.log(req.file);
 
   cloudinary.v2.uploader.upload(req.file.path, function(error, result) {
-    console.log('result: ', result)
     res.send(result);
   })
 })
 
+
 router.post('/images', upload.single('file'), (req, res, next) => {
-  console.log(req.file);
 
   cloudinary.v2.uploader.upload(req.file.path, function(error, result) {
-    console.log('result: ', result)
-    result.angle = 0;
     res.send(result);
   })
 })

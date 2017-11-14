@@ -30,7 +30,6 @@
       vm.getUser(vm.userData);
       vm.getFeed()
         .then(function() {
-          console.log(vm.feed);
           vm.feed = vm.feed.map(function(post) {
             post.full_name = `${post.first_name} ${post.last_name}`
             post.types = '';
@@ -93,7 +92,6 @@
           post.comments.push(retObj);
           post.showComments = true;
           delete post.commentInput;
-          console.log(post)
         })
     }
 
@@ -127,14 +125,11 @@
     }
 
     vm.deleteComment = function(comment) {
-      console.log(comment);
       return dataService.deleteComment(comment)
         .then(function(response) {
-          console.log(response);
           const postIndex = vm.findPostIndex(vm.feed, response.data);
           const commentIndex = vm.findCommentIndex(vm.feed[postIndex].comments, response.data);
           vm.feed[postIndex].comments.splice(commentIndex, 1);
-          console.log(vm.feed);
         })
     }
 
@@ -163,7 +158,6 @@
           } else {
             post.imagePointer++;
           }
-          console.log(this)
           this.src = post.images[post.imagePointer].url
 
           $(`img[data-id="${post.post_id}"].post-image`).fadeIn('fast')

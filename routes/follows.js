@@ -8,8 +8,6 @@ const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
 router.post('/follows', (req, res, next) => {
-  console.log('backend')
-  console.log('req.body: ', req.body)
   knex('follows')
     .insert(req.body, '*')
     .then(function(follow) {
@@ -38,7 +36,6 @@ router.delete('/follows/:id', (req, res, next) => {
     .where('follows.id', req.params.id)
     .first()
     .then(function(follow) {
-      console.log(follow);
       if (!follow) return next();
       retVal = follow;
       return knex('follows')

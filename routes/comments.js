@@ -22,7 +22,6 @@ router.post('/comments', (req, res, next) => {
 })
 
 router.delete('/comments/:id', (req, res, next) => {
-  console.log(req.params);
   let retVal;
   knex('comments')
     .where('comments.id', req.params.id)

@@ -31,7 +31,6 @@
     }
 
     vm.changeCount = function(style) {
-      console.log(style);
       if (style.checked) {
         vm.checkCount++;
         vm.selectedStyles.push(style)
@@ -41,8 +40,6 @@
         const index = vm.findIndex(vm.selectedStyles, style);
         vm.selectedStyles.splice(index, 1);
       }
-      console.log('count', vm.checkCount)
-      console.log('selectedStyles: ', vm.selectedStyles)
     }
 
     vm.submitPost = function(post) {
@@ -50,7 +47,6 @@
       post.styles = vm.selectedStyles;
       return dataService.addPost(post)
         .then(function(response) {
-          console.log(response);
           $state.go('home')
         })
     }
@@ -62,7 +58,6 @@
     }
 
     vm.uploadFile = function(event) {
-      console.log('uploading')
       if (!vm.newPost.images) {
         vm.newPost.images = [];
       }
@@ -75,8 +70,6 @@
 
         $http.post('/images', formData, {headers: {'Content-Type': undefined}})
           .then(function(response) {
-            console.log('anything')
-            console.log(response.data)
             vm.newPost.images.push(response.data.url.replace('upload', 'upload/a_0'));
           })
       }

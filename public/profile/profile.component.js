@@ -23,12 +23,10 @@
       vm.getProfile(idObj)
         .then(function() {
           vm.profile.age = birthdayService.calculateAge(vm.profile.birthdate)
-          console.log(vm.profile)
         })
 
       vm.getPosts(idObj)
         .then(function() {
-          console.log(vm.posts);
           for (const post of vm.posts) {
             for (const image of post.images) {
               vm.images.push(image.url);
@@ -112,10 +110,8 @@
     }
 
     vm.deleteComment = function(comment) {
-      console.log(comment);
       return dataService.deleteComment(comment)
         .then(function(response) {
-          console.log(response);
           const postIndex = vm.findPostIndex(vm.posts, response.data);
           const commentIndex = vm.findCommentIndex(vm.posts[postIndex].comments, response.data);
           vm.posts[postIndex].comments.splice(commentIndex, 1);

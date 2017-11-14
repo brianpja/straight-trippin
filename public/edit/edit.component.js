@@ -43,7 +43,6 @@
           $state.go('home');
         })
         .catch((err) => {
-          console.log(err.data)
           vm.editError = err.data.output.payload.message;
           vm.showEditError = true;
           $timeout(function() {
