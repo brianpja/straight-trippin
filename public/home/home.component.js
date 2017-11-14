@@ -105,7 +105,7 @@
     }
 
     vm.deletePost = function(post) {
-      return dataService.deletePost(post)
+        return dataService.deletePost(post)
         .then(function(response) {
           const index = vm.findIndex(vm.feed, response.data);
           vm.feed.splice(index, 1);

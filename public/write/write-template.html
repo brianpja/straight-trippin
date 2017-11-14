@@ -21,7 +21,7 @@
     </div>
     <br>
     <div class="cf">
-      <div class="mv2"><label for="content">What did you do?</label></div>
+      <div class="mv2"><label for="content">Tell us about your trip: </label></div>
       <div><textarea id="content" ng-model="$ctrl.newPost.content" class="br2 b--light-silver" type="text" rows="5" cols="65" required></textarea></div>
     </div>
 
@@ -29,9 +29,6 @@
       <input class="br2" type="file" fileupload="$ctrl.uploadFile">
     </div>
 
-    <!-- <div ng-if="$ctrl.newPost.images.length">
-      <img class="br2" src="{{$ctrl.newPost.images[0]}}">
-    </div> -->
 
     <div class="tc" ng-if="$ctrl.newPost.images.length" ng-repeat="image in $ctrl.newPost.images | orderBy: $index : true">
       <img class="br2 post-image" src="{{image}}">

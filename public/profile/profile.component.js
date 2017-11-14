@@ -8,13 +8,14 @@
 
     })
 
-  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$stateParams', 'birthdayService']
-  function controller($state, $http, dataService, loginService, $stateParams, birthdayService) {
+  controller.$inject = ['$state', '$http', 'dataService', 'loginService', '$stateParams', 'birthdayService', 'preloader']
+  function controller($state, $http, dataService, loginService, $stateParams, birthdayService, preloader) {
     const vm = this;
 
     vm.user = loginService.user;
     vm.profile = {};
     vm.posts = [];
+    vm.images = [];
 
     vm.$onInit = function() {
       const idObj = {id: $stateParams.id}
@@ -28,7 +29,14 @@
       vm.getPosts(idObj)
         .then(function() {
           console.log(vm.posts);
+          for (const post of vm.posts) {
+            for (const image of post.images) {
+              vm.images.push(image.url);
+            }
+          }
+          preloader.preloadImages(vm.images);
         })
+
       vm.getUser(vm.user);
     }
 
