@@ -67,7 +67,7 @@
 
           $http.post('/profile', formData, {headers: {'Content-Type': undefined}})
             .then(function(response) {
-              vm.user.img = response.data.url;
+              vm.user.img = response.data.url.replace('upload', 'upload/a_0');
             })
         }
     };

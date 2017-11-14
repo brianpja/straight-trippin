@@ -41,6 +41,7 @@ router.post('/images', upload.single('file'), (req, res, next) => {
 
   cloudinary.v2.uploader.upload(req.file.path, function(error, result) {
     console.log('result: ', result)
+    result.angle = 0;
     res.send(result);
   })
 })

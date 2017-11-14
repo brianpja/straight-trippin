@@ -62,6 +62,7 @@
     }
 
     vm.uploadFile = function(event) {
+      console.log('uploading')
       if (!vm.newPost.images) {
         vm.newPost.images = [];
       }
@@ -74,12 +75,14 @@
 
         $http.post('/images', formData, {headers: {'Content-Type': undefined}})
           .then(function(response) {
-            vm.newPost.images.push(response.data.url);
+            console.log('anything')
+            console.log(response.data)
+            vm.newPost.images.push(response.data.url.replace('upload', 'upload/a_0'));
           })
       }
     }
 
-    
+
 
   }
 }());
