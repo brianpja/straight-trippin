@@ -1,4 +1,4 @@
-# straight-trippin
+# Straight Trippin'
 
 ## Technology:
 * Javascript
